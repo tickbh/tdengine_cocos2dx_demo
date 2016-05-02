@@ -1,3 +1,5 @@
 Debug.win32
 *.sdf
 *.opensdf
+*.pdb
+*.ilk
