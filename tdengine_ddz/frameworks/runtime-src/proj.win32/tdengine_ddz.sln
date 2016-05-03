@@ -24,6 +24,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "librecast", "..\..\cocos2d-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "td_proto_cpp", "..\..\..\external\td_proto_cpp\src\td_proto_cpp.vcxproj", "{B74110E9-2B80-47AB-AB47-1CF7887FF657}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "..\..\..\third_part\lualib\lualib.vcxproj", "{ADC5D3D0-4539-4558-939D-2ED6F23204D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -66,6 +68,10 @@ Global
 		{B74110E9-2B80-47AB-AB47-1CF7887FF657}.Debug|Win32.Build.0 = Debug|Win32
 		{B74110E9-2B80-47AB-AB47-1CF7887FF657}.Release|Win32.ActiveCfg = Release|Win32
 		{B74110E9-2B80-47AB-AB47-1CF7887FF657}.Release|Win32.Build.0 = Release|Win32
+		{ADC5D3D0-4539-4558-939D-2ED6F23204D0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADC5D3D0-4539-4558-939D-2ED6F23204D0}.Debug|Win32.Build.0 = Debug|Win32
+		{ADC5D3D0-4539-4558-939D-2ED6F23204D0}.Release|Win32.ActiveCfg = Release|Win32
+		{ADC5D3D0-4539-4558-939D-2ED6F23204D0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
