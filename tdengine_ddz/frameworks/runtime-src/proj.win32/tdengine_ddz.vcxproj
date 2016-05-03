@@ -51,7 +51,7 @@
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)../;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)../;$(ProjectDir)../../../external/td_proto_cpp/src;$(IncludePath)</IncludePath>
     <SourcePath>$(SourcePath);</SourcePath>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -194,8 +194,18 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClInclude Include="..\Classes\ide-support\lua_debugger.h" />
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h" />
     <ClInclude Include="..\mgr\LuaUtil.h" />
-    <ClInclude Include="..\utils\TDSocket.h" />
+    <ClInclude Include="..\mgr\netmgr\ServiceGate.h" />
+    <ClInclude Include="..\mgr\netmgr\ServiceMgr.h" />
+    <ClInclude Include="..\mgr\netmgr\SocketEvent.h" />
+    <ClInclude Include="..\mgr\TDLuaMgr.h" />
+    <ClInclude Include="..\net\NetMsg.h" />
+    <ClInclude Include="..\net\ReadInfo.h" />
+    <ClInclude Include="..\net\TDSocket.h" />
+    <ClInclude Include="..\utils\TDMacro.h" />
+    <ClInclude Include="..\utils\TDThread.h" />
+    <ClInclude Include="..\utils\TDThreadPool.h" />
     <ClInclude Include="..\utils\TDUtils.h" />
+    <ClInclude Include="..\utils\TimeUtils.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SimulatorWin.h" />
@@ -207,7 +217,14 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClCompile Include="..\Classes\ide-support\lua_debugger.c" />
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp" />
     <ClCompile Include="..\mgr\LuaUtil.cpp" />
-    <ClCompile Include="..\utils\TDSocket.cpp" />
+    <ClCompile Include="..\mgr\netmgr\ServiceGate.cpp" />
+    <ClCompile Include="..\mgr\netmgr\ServiceMgr.cpp" />
+    <ClCompile Include="..\mgr\netmgr\SocketEvent.cpp" />
+    <ClCompile Include="..\mgr\TDLuaMgr.cpp" />
+    <ClCompile Include="..\net\ReadInfo.cpp" />
+    <ClCompile Include="..\net\TDSocket.cpp" />
+    <ClCompile Include="..\utils\TDThread.cpp" />
+    <ClCompile Include="..\utils\TDThreadPool.cpp" />
     <ClCompile Include="..\utils\TDUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimulatorWin.cpp" />

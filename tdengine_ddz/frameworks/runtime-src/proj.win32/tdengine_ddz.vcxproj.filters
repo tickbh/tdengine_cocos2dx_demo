@@ -16,6 +16,12 @@
     <Filter Include="utils">
       <UniqueIdentifier>{83b8782d-28ca-4df9-a3dc-953afc2ba779}</UniqueIdentifier>
     </Filter>
+    <Filter Include="mgr\netmgr">
+      <UniqueIdentifier>{82750647-6e42-441a-bb43-2fdd01e82260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{0207ddb2-223a-4ae5-a076-3db0b2320320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -44,10 +50,40 @@
     <ClInclude Include="..\mgr\LuaUtil.h">
       <Filter>mgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils\TDSocket.h">
+    <ClInclude Include="..\utils\TDUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\utils\TDUtils.h">
+    <ClInclude Include="..\mgr\netmgr\SocketEvent.h">
+      <Filter>mgr\netmgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mgr\netmgr\ServiceGate.h">
+      <Filter>mgr\netmgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mgr\netmgr\ServiceMgr.h">
+      <Filter>mgr\netmgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\net\TDSocket.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\net\ReadInfo.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\net\NetMsg.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mgr\TDLuaMgr.h">
+      <Filter>mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\TDThread.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\TDThreadPool.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\TDMacro.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\TimeUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +110,28 @@
     <ClCompile Include="..\utils\TDUtils.cpp">
       <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\utils\TDSocket.cpp">
+    <ClCompile Include="..\mgr\netmgr\ServiceGate.cpp">
+      <Filter>mgr\netmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mgr\netmgr\ServiceMgr.cpp">
+      <Filter>mgr\netmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mgr\netmgr\SocketEvent.cpp">
+      <Filter>mgr\netmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\net\TDSocket.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\net\ReadInfo.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mgr\TDLuaMgr.cpp">
+      <Filter>mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\TDThreadPool.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\TDThread.cpp">
       <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
