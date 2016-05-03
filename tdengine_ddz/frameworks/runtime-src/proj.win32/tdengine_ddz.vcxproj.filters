@@ -41,10 +41,13 @@
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="mgr\LuaUtil.h">
+    <ClInclude Include="..\mgr\LuaUtil.h">
       <Filter>mgr</Filter>
     </ClInclude>
-    <ClInclude Include="utils\TDUtils.h">
+    <ClInclude Include="..\utils\TDSocket.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utils\TDUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,10 +68,13 @@
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="mgr\LuaUtil.cpp">
+    <ClCompile Include="..\mgr\LuaUtil.cpp">
       <Filter>mgr</Filter>
     </ClCompile>
-    <ClCompile Include="utils\TDUtils.cpp">
+    <ClCompile Include="..\utils\TDUtils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utils\TDSocket.cpp">
       <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
