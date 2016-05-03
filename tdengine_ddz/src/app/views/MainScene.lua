@@ -11,6 +11,7 @@ function MainScene:onCreate()
     cc.Label:createWithSystemFont("Hello World", "Arial", 40)
         :move(display.cx, display.cy + 200)
         :addTo(self)
+        
 
 end
 

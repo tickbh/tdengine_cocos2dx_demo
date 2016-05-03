@@ -9,12 +9,12 @@ CC_USE_FRAMEWORK = true
 CC_SHOW_FPS = true
 
 -- disable create unexpected global variable
-CC_DISABLE_GLOBAL = true
+CC_DISABLE_GLOBAL = false
 
 -- for module display
 CC_DESIGN_RESOLUTION = {
-    width = 960,
-    height = 640,
+    width = 1280,
+    height = 720,
     autoscale = "FIXED_HEIGHT",
     callback = function(framesize)
         local ratio = framesize.width / framesize.height

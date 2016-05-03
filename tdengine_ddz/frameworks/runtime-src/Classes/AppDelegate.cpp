@@ -12,11 +12,35 @@
 #include "runtime/Runtime.h"
 #include "ide-support/RuntimeLuaImpl.h"
 #endif
+#include "mgr/LuaUtil.h"
 
 using namespace CocosDenshion;
 
 USING_NS_CC;
 using namespace std;
+
+int custom_loadlua(lua_State* L) {
+	if (!lua_isstring(L, 1))
+		return 0;
+	auto filename = lua_tostring(L, 1);
+	std::string shortName = filename;
+	std::string::size_type pos = shortName.rfind("/");
+	if (pos != std::string::npos) {
+		shortName = shortName.substr(pos + 1);
+	}
+	Data data = FileUtils::getInstance()->getDataFromFile(lua_tostring(L, 1));
+	if (data.isNull()) {
+		return 0;
+	}
+	cocos2d::log("load %s loader from path", filename);
+	if (luaL_loadbuffer(L, (const char*)data.getBytes(), data.getSize(), shortName.c_str()) != 0) {
+
+		luaL_error(L, "error loading module %s from file %s :\n\t%s",
+			filename, filename, lua_tostring(L, -1));
+	}
+	return 1;
+
+}
 
 AppDelegate::AppDelegate()
 {
@@ -61,6 +85,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
+	engine->addLuaLoader(custom_loadlua);
+	LuaUtil::openLibs(L);
 
     register_all_packages();
 
