@@ -36,12 +36,14 @@ function LOGIN_LAYER_CLASS:onInit()
     self:addChild(account_eb)
     account_eb:setPosition( cc.p(500,200) )
     account_eb:setPlaceHolder("click to input text")
+    self.account_eb = account_eb
 
     local back = cc.Scale9Sprite:create(res)
     local passwd_eb = ccui.EditBox:create(cc.size(width,height),res)
     self:addChild(passwd_eb)
     passwd_eb:setPosition( cc.p(500,153) )
     passwd_eb:setPlaceHolder("click to input text")
+    self.passwd_eb = passwd_eb
 
 
     local function touchEvent(sender,eventType)
