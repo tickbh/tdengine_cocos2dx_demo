@@ -22,6 +22,9 @@
     <Filter Include="net">
       <UniqueIdentifier>{0207ddb2-223a-4ae5-a076-3db0b2320320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{7c91c276-15c3-4791-b070-5674b4a78b24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -89,6 +92,12 @@
     <ClInclude Include="..\net\NetConfig.h">
       <Filter>net</Filter>
     </ClInclude>
+    <ClInclude Include="..\net\MessageDispatch.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\LuaRegister.h">
+      <Filter>lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -139,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="..\net\NetConfig.cpp">
       <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\net\MessageDispatch.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\LuaRegister.cpp">
+      <Filter>lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -193,11 +193,13 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClInclude Include="..\Classes\ide-support\CodeIDESupport.h" />
     <ClInclude Include="..\Classes\ide-support\lua_debugger.h" />
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h" />
+    <ClInclude Include="..\lua\LuaRegister.h" />
     <ClInclude Include="..\mgr\LuaUtil.h" />
     <ClInclude Include="..\mgr\netmgr\ServiceGate.h" />
     <ClInclude Include="..\mgr\netmgr\ServiceMgr.h" />
     <ClInclude Include="..\mgr\netmgr\SocketEvent.h" />
     <ClInclude Include="..\mgr\TDLuaMgr.h" />
+    <ClInclude Include="..\net\MessageDispatch.h" />
     <ClInclude Include="..\net\NetConfig.h" />
     <ClInclude Include="..\net\NetMsg.h" />
     <ClInclude Include="..\net\ReadInfo.h" />
@@ -217,11 +219,13 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\ide-support\lua_debugger.c" />
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp" />
+    <ClCompile Include="..\lua\LuaRegister.cpp" />
     <ClCompile Include="..\mgr\LuaUtil.cpp" />
     <ClCompile Include="..\mgr\netmgr\ServiceGate.cpp" />
     <ClCompile Include="..\mgr\netmgr\ServiceMgr.cpp" />
     <ClCompile Include="..\mgr\netmgr\SocketEvent.cpp" />
     <ClCompile Include="..\mgr\TDLuaMgr.cpp" />
+    <ClCompile Include="..\net\MessageDispatch.cpp" />
     <ClCompile Include="..\net\NetConfig.cpp" />
     <ClCompile Include="..\net\ReadInfo.cpp" />
     <ClCompile Include="..\net\TDSocket.cpp" />
