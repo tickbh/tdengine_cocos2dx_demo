@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-#include "Buffer.h"
 #include "NetMsg.h"
 #include "cocos2d.h"
 using namespace td_proto;

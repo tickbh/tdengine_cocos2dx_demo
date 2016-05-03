@@ -86,6 +86,9 @@
     <ClInclude Include="..\utils\TimeUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\net\NetConfig.h">
+      <Filter>net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="..\utils\TDThread.cpp">
       <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\net\NetConfig.cpp">
+      <Filter>net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿#ifndef __NET_NETMSG_H__
 #define __NET_NETMSG_H__
 
-#include "Buffer.h"
+#include "td_proto_cpp/include/Buffer.h"
 
 #define NET_DATA_LEN_XOR	0x12345678
 

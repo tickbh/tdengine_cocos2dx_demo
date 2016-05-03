@@ -51,7 +51,7 @@
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)../;$(ProjectDir)../../../external/td_proto_cpp/src;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)../;$(ProjectDir)../../../external/;$(ProjectDir)../../../third_part/lualib;$(ProjectDir)../../../third_part/jsoncpp/include;$(IncludePath)</IncludePath>
     <SourcePath>$(SourcePath);</SourcePath>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -198,6 +198,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClInclude Include="..\mgr\netmgr\ServiceMgr.h" />
     <ClInclude Include="..\mgr\netmgr\SocketEvent.h" />
     <ClInclude Include="..\mgr\TDLuaMgr.h" />
+    <ClInclude Include="..\net\NetConfig.h" />
     <ClInclude Include="..\net\NetMsg.h" />
     <ClInclude Include="..\net\ReadInfo.h" />
     <ClInclude Include="..\net\TDSocket.h" />
@@ -221,6 +222,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClCompile Include="..\mgr\netmgr\ServiceMgr.cpp" />
     <ClCompile Include="..\mgr\netmgr\SocketEvent.cpp" />
     <ClCompile Include="..\mgr\TDLuaMgr.cpp" />
+    <ClCompile Include="..\net\NetConfig.cpp" />
     <ClCompile Include="..\net\ReadInfo.cpp" />
     <ClCompile Include="..\net\TDSocket.cpp" />
     <ClCompile Include="..\utils\TDThread.cpp" />
@@ -237,6 +239,9 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <Image Include="res\game.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\third_part\jsoncpp\makefiles\vs71\lib_json.vcxproj">
+      <Project>{b84f7231-16ce-41d8-8c08-7b523ff4225b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\third_part\lualib\lualib.vcxproj">
       <Project>{adc5d3d0-4539-4558-939d-2ed6f23204d0}</Project>
     </ProjectReference>

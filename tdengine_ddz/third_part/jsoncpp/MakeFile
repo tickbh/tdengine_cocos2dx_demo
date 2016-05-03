@@ -1,0 +1,38 @@
+TARGET = libjsoncpp.a
+OBJ_PATH = objs
+PREFIX_BIN = ../../bin/
+
+CC = g++
+CFLAGS = -Wall -Werror -g
+LINKFLAGS =
+
+INCLUDES = -I include
+SRCDIR = src/lib_json
+LIBS =
+
+CPP_SRCDIR = $(SRCDIR)
+CPP_SOURCES = $(foreach d,$(CPP_SRCDIR),$(wildcard $(d)/*.cpp) )
+CPP_OBJS = $(patsubst %.cpp, $(OBJ_PATH)/%.o, $(CPP_SOURCES))
+
+$(warning $(CPP_SOURCES))
+
+default:init compile
+
+$(CPP_OBJS):$(OBJ_PATH)/%.o:%.cpp
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+
+init:
+	$(foreach d,$(SRCDIR), mkdir -p $(OBJ_PATH)/$(d);)
+
+compile:$(CPP_OBJS)
+	ar -r  $(TARGET) $^
+
+clean:
+	rm -rf $(OBJ_PATH)
+	rm -f $(TARGET)
+
+install: $(TARGET)
+	cp $(TARGET) $(PREFIX_BIN)
+
+uninstall:
+	rm -f $(

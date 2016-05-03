@@ -6,7 +6,7 @@
 #include "net/NetMsg.h"
 #include "net/NetConfig.h"
 #include "net/MessageDispatch.h"
-#include "lua/lua_tinker/lua_tinker.h"
+#include "lua_tinker/lua_tinker.h"
 #include "utils/TimeUtils.h"
 extern "C" {
 #include "lualib.h"
