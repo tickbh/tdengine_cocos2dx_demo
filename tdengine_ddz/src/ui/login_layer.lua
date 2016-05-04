@@ -51,13 +51,13 @@ function LOGIN_LAYER_CLASS:onInit()
     local function touchEvent(sender,eventType)
         trace("account info is %o", self.account_eb:getText())
         trace("passwd_eb info is %o", self.passwd_eb:getText())
-        LOGIN_D.login(self.account_eb:getText(), self.passwd_eb:getText())
 
         if eventType == ccui.TouchEventType.began then
             print("Touch Down")
         elseif eventType == ccui.TouchEventType.moved then
             print("Touch Move")
         elseif eventType == ccui.TouchEventType.ended then
+            LOGIN_D.login(self.account_eb:getText(), self.passwd_eb:getText())
             print("Touch Up")
         elseif eventType == ccui.TouchEventType.canceled then
             print("Touch Cancelled")

@@ -21,6 +21,12 @@ function MAIN_SCENE_CLASS:openMainLayer()
     self:addChild(layer)
 end
 
+function MAIN_SCENE_CLASS:openDdzRoomLayer()
+    self:removeAllChildren()
+    local layer = DDZ_ROOM_LAYER_CLASS:create()
+    self:addChild(layer)
+end
+
 function MAIN_SCENE_CLASS:onCleanup_()
 
 end

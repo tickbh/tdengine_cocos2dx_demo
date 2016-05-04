@@ -101,6 +101,7 @@ function msg_enter_room(user, info)
     end
     trace("msg_enter_room info = %o", info)
     trace("成功进入房间:\"%s\"", info.room_name)
+    g_scene:openDdzRoomLayer()
 end
 
 function msg_leave_room(user, info)    
