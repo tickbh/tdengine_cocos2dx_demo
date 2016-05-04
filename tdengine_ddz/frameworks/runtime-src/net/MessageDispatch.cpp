@@ -42,7 +42,7 @@ bool MessageDispatch::unpackBuffer( lua_State* lua, NetMsg* input)
 	return true;
 }
 
-bool MessageDispatch::lua_convert_value(std::vector<td_proto::Values>& values, lua_State* lua, NetMsg* input, i32 index, std::vector<std::string>& args)
+bool MessageDispatch::lua_convert_value(std::vector<td_proto::Values>& values, lua_State* lua, i32 index, std::vector<std::string>& args)
 {
 	auto size = lua_gettop(lua) - index + 1;
 	if (size != args.size()) {

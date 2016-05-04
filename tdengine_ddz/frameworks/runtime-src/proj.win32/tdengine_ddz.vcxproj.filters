@@ -50,9 +50,6 @@
     <ClInclude Include="..\Classes\ide-support\RuntimeLuaImpl.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\mgr\LuaUtil.h">
-      <Filter>mgr</Filter>
-    </ClInclude>
     <ClInclude Include="..\utils\TDUtils.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -98,6 +95,12 @@
     <ClInclude Include="..\lua\LuaRegister.h">
       <Filter>lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\lua\LuaUtil.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\LuaNetwork.h">
+      <Filter>lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -115,9 +118,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ide-support\RuntimeLuaImpl.cpp">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\mgr\LuaUtil.cpp">
-      <Filter>mgr</Filter>
     </ClCompile>
     <ClCompile Include="..\utils\TDUtils.cpp">
       <Filter>utils</Filter>
@@ -153,6 +153,12 @@
       <Filter>net</Filter>
     </ClCompile>
     <ClCompile Include="..\lua\LuaRegister.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\LuaUtil.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\LuaNetwork.cpp">
       <Filter>lua</Filter>
     </ClCompile>
   </ItemGroup>

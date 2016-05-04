@@ -1,4 +1,4 @@
-#include "TDLuaMgr.h"
+﻿#include "TDLuaMgr.h"
 
 #include <assert.h>
 #include <string>
@@ -14,12 +14,34 @@ extern "C" {
 }
 
 
+int custom_loadlua(lua_State* L) {
+	if (!lua_isstring(L, 1))
+		return 0;
+	auto filename = lua_tostring(L, 1);
+	std::string shortName = filename;
+	std::string::size_type pos = shortName.rfind("/");
+	if (pos != std::string::npos) {
+		shortName = shortName.substr(pos + 1);
+	}
+	Data data = FileUtils::getInstance()->getDataFromFile(lua_tostring(L, 1));
+	if (data.isNull()) {
+		return 0;
+	}
+	cocos2d::log("load %s loader from path", filename);
+	if (luaL_loadbuffer(L, (const char*)data.getBytes(), data.getSize(), shortName.c_str()) != 0) {
+
+		luaL_error(L, "error loading module %s from file %s :\n\t%s",
+			filename, filename, lua_tostring(L, -1));
+	}
+	return 1;
+}
+
 TDLuaMgr::TDLuaMgr(void)
 {
 	luaThreadPool = new TDThreadPool(1);
 	engine = LuaEngine::getInstance();
 	m_pLuaState = LuaEngine::getInstance()->getLuaStack()->getLuaState();
-	//addLuaLoader(luaCustomLoader);
+	addLuaLoader(custom_loadlua);
 }
 
 

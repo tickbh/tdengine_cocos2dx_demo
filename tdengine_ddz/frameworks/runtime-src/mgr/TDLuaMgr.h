@@ -3,7 +3,6 @@
 
 extern "C" {
 #include "lua.h"
-extern int luaCustomLoader(lua_State *L);
 }
 
 #include "cocos2d.h"
