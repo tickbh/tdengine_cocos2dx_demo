@@ -32,7 +32,7 @@ local function main()
     load_folder("share")
 
     update("etc/format")
-
+    load_folder("client/include")
     load_folder("client/global","md5")
     load_folder("client/clone")
     load_folder("client/msgs")

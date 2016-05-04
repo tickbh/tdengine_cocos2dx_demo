@@ -79,11 +79,8 @@ function msg_room_message(user, oper, info)
     trace("user = %o, oper = %o, info = %o", user, oper, info)
     if oper == "success_enter_room" then
         trace("成功进入房间:\"%s\"", info.room_name)
-        user:send_message(CMD_ROOM_MESSAGE, "enter_desk", {})
+        -- user:send_message(CMD_ROOM_MESSAGE, "enter_desk", {})
     elseif oper == "success_enter_desk" then
-        if info.rid == get_ob_rid(user) then
-            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "ready"})
-        end
         trace("%s成功进入桌子:\"%d\", 在位置:%d", info.rid, info.idx, info.wheel_idx)
     elseif oper == "pre_room" then
         if info.room_name then
@@ -101,7 +98,7 @@ function msg_enter_room(user, info)
     end
     trace("msg_enter_room info = %o", info)
     trace("成功进入房间:\"%s\"", info.room_name)
-    g_scene:openDdzRoomLayer()
+    raise_issue(EVENT_ENTER_ROOM, user)
 end
 
 function msg_leave_room(user, info)    

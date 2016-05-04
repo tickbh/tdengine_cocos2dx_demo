@@ -5,9 +5,9 @@ end)
 
 function MAIN_SCENE_CLASS:ctor()
     self:enableNodeEvents()
-    self.gameAllSize = 0
-    self.gameCurSize = 0
+    self.uid = new_cookie()
     self:onInit()
+
 end
 
 function MAIN_SCENE_CLASS:onInit()
@@ -16,6 +16,7 @@ function MAIN_SCENE_CLASS:onInit()
 end
 
 function MAIN_SCENE_CLASS:openMainLayer()
+    trace("EVENT_ENTER_GAME!!!")
     self:removeAllChildren()
     local layer = MAIN_LAYER_CLASS:create()
     self:addChild(layer)
@@ -29,4 +30,13 @@ end
 
 function MAIN_SCENE_CLASS:onCleanup_()
 
+end
+
+function MAIN_SCENE_CLASS:onEnter_()
+    register_as_audience(self.uid, {EVENT_ENTER_GAME={func = self.openMainLayer, args = {self} }})
+    register_as_audience(self.uid, {EVENT_ENTER_ROOM={func = self.openDdzRoomLayer, args = {self} }})
+end
+
+function MAIN_SCENE_CLASS:onExit_()
+    remove_audience_from_raiser(self.uid)
 end

@@ -43,6 +43,8 @@ function raise_issue(event, ...)
     end
 
     local nodes = event_audience[event] or {}
+    trace("event_audience is %o", event_audience)
+    trace("nodes is %o event is %o", nodes, event)
     for listener, node in pairs(nodes) do
         f = node["func"];
         if type(f) == "function" then

@@ -34,14 +34,13 @@ function me_updated(agent, data)
 
     -- 设置玩家心跳
     user:set_heartbeat_interval(HEARTBEAT_INTERVAL)
-    raise_issue(EVENT_LOGIN_OK, user)
 
     me_rid = get_ob_rid(user)
     me_agent = user
 
     set_enter_game(true)
 
-    g_scene:openMainLayer()
+    raise_issue(EVENT_ENTER_GAME, user)
 end
 
 function get_rid()

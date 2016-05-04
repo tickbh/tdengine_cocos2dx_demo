@@ -5,8 +5,7 @@ end)
 
 function DDZ_ROOM_LAYER_CLASS:ctor()
     self:enableNodeEvents()
-    self.gameAllSize = 0
-    self.gameCurSize = 0
+    self.uid = new_cookie()
     self:onInit()
 end
 
@@ -28,7 +27,7 @@ function DDZ_ROOM_LAYER_CLASS:onInit()
         elseif eventType == ccui.TouchEventType.moved then
             print("Touch Move")
         elseif eventType == ccui.TouchEventType.ended then
-            ME_D.request_message(CMD_ENTER_ROOM, {room_name = "ddz1"})
+            ME_D.request_message(CMD_ROOM_MESSAGE, "enter_desk", {})
             print("Touch Up")
         elseif eventType == ccui.TouchEventType.canceled then
             print("Touch Cancelled")
@@ -46,6 +45,18 @@ function DDZ_ROOM_LAYER_CLASS:onInit()
     self:addChild(textButton)
 end
 
+function DDZ_ROOM_LAYER_CLASS:enter_desk()
+    trace("DDZ_ROOM_LAYER_CLASS:enter_desk")
+end
+
 function DDZ_ROOM_LAYER_CLASS:onCleanup_()
 
+end
+
+function DDZ_ROOM_LAYER_CLASS:onEnter_()
+    register_as_audience(self.uid, {EVENT_ENTER_DESK={func = self.enter_desk, args = {self} }})
+end
+
+function DDZ_ROOM_LAYER_CLASS:onExit_()
+    remove_audience_from_raiser(self.uid)
 end
