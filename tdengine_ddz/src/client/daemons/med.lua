@@ -38,6 +38,8 @@ function me_updated(agent, data)
 
     me_rid = get_ob_rid(user)
     me_agent = user
+
+    g_scene:openMainLayer()
 end
 
 function get_rid()

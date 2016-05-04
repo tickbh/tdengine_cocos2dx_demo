@@ -19,6 +19,7 @@
 #include "../mgr/netmgr/ServiceGate.h"
 #include "../net/NetConfig.h"
 #include "../lua/LuaRegister.h"
+#include "../lua/LuaTimer.h"
 extern "C" {
 #include "bit/bit.h"
 #include "cjson/lua_cjson.h"
@@ -80,6 +81,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	luaopen_bit(L);
 	luaopen_cjson(L);
 	luaopen_md5_core(L);
+	luaopen_lua_timer(L);
 
 	//初始化lua加载函数
 	TDLuaMgr::instance();

@@ -18,6 +18,7 @@ function update(name)
     collectgarbage("collect")
 end
 
+g_scene = nil
 update("global/base/util")
 
 local function main()
@@ -30,15 +31,20 @@ local function main()
 
     load_folder("share")
 
+    update("etc/format")
+
     load_folder("client/global","md5")
-    load_folder("client/clone");
+    load_folder("client/clone")
+    load_folder("client/msgs")
     update("client/daemons/logind")
     update("client/daemons/med")
 
     load_folder("ui")
 
+    post_init()
     local  login_scene = MAIN_SCENE_CLASS:create()
     display.runScene(login_scene)
+    g_scene = login_scene
 end
 
 local status, msg = xpcall(main, error_handle)

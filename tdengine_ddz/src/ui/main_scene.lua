@@ -15,6 +15,12 @@ function MAIN_SCENE_CLASS:onInit()
     self:addChild(layer)
 end
 
+function MAIN_SCENE_CLASS:openMainLayer()
+    self:removeAllChildren()
+    local layer = MAIN_LAYER_CLASS:create()
+    self:addChild(layer)
+end
+
 function MAIN_SCENE_CLASS:onCleanup_()
 
 end

@@ -104,6 +104,9 @@
     <ClInclude Include="..\mgr\ConfigMgr.h">
       <Filter>mgr</Filter>
     </ClInclude>
+    <ClInclude Include="..\lua\LuaTimer.h">
+      <Filter>lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -166,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="..\mgr\ConfigMgr.cpp">
       <Filter>mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\LuaTimer.cpp">
+      <Filter>lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

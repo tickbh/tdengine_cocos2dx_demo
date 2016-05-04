@@ -15,7 +15,6 @@ end
 
 function msg_enter_game(agent, info)
     ME_D.me_updated(agent, info)
-    enter_room()
 end
 
 function msg_common_op(user, info)
