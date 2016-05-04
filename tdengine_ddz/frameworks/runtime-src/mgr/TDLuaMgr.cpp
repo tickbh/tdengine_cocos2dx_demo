@@ -472,7 +472,7 @@ void TDLuaMgr::excuteMessage(int fd, NetMsg* input)
 	lua_pushnumber(luaState, fd);
 	
 	input->readHead();
-	MessageDispatch::instance()->pushMsgName(luaState, input->getPackId());
+	lua_pushstring(luaState, input->getPackName().c_str());
 
 	lua_tinker::push<NetMsg*>(luaState, input);
 	//// 压入第三个参数（消息参数）

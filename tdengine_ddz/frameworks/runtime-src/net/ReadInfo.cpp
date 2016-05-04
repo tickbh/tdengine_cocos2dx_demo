@@ -28,8 +28,6 @@ char* ReadInfo::getNextMessage( int& size ) {
 		return nullptr;
 	}
 	u32 messageLength = ByteGetValue<u32>(message);
-	messageLength = messageLength ^ NET_DATA_LEN_XOR;
-
 	if(messageLength == 0 || messageLength < headSize) {
 		costBufferLegnth(headSize);
 		cocos2d::log("!!!!!!!!!!!!!!!length!!!!!!!!!!! message length is %d", messageLength);

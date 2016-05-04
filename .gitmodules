@@ -1,3 +1,3 @@
 [submodule "tdengine_ddz/external/td_proto_cpp"]
 	path = tdengine_ddz/external/td_proto_cpp
-	url = https://github.com/tickbh/td_proto_cpp.git
+	url = git@github.com:tickbh/td_proto_cpp.git

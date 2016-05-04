@@ -7,17 +7,17 @@
 class TimeUtils
 {
 public:
-	static int getServSecond()
+	static u32 getServSecond()
 	{
 		std::chrono::time_point<std::chrono::system_clock> time = std::chrono::system_clock::now();
-		int count = (uint32)std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch()).count();
+		int count = (u32)std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch()).count();
 		return count;
 	}
 
-	static int getServMSecond()
+	static u32 getServMSecond()
 	{
 		std::chrono::time_point<std::chrono::system_clock> time = std::chrono::system_clock::now();
-		uint32 count = (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(time.time_since_epoch()).count();
+		u32 count = (u32)std::chrono::duration_cast<std::chrono::milliseconds>(time.time_since_epoch()).count();
 		count = count & 0x7FFFFFFF;
 		return count;
 	}

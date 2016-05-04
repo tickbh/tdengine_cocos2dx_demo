@@ -100,10 +100,6 @@ void ServiceGate::dispathMessage( int sock )
 	while (message != nullptr)
 	{
 		NetMsg* input = new NetMsg(message, nextSize);
-		if (!input->checkSign()) {
-			ServiceGate::kickSocket(sock);
-			return;
-		}
 		LuaMgrIns->excuteMessage(sock, input);
 		delete input;
 
