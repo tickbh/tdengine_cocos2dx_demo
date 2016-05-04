@@ -16,10 +16,14 @@
 #include "../mgr/TDLuaMgr.h"
 #include "../lua/LuaNetwork.h"
 #include "../mgr/ConfigMgr.h"
+#include "../mgr/netmgr/ServiceGate.h"
+#include "../net/NetConfig.h"
+#include "../lua/LuaRegister.h"
 extern "C" {
 #include "bit/bit.h"
 #include "cjson/lua_cjson.h"
 #include "md5/md5.h"
+
 }
 using namespace CocosDenshion;
 
@@ -70,6 +74,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
+	LuaRegister::openLibs(L);
 	LuaUtil::openLibs(L);
 	LuaNetwork::openLibs(L);
 	luaopen_bit(L);
@@ -82,17 +87,26 @@ bool AppDelegate::applicationDidFinishLaunching()
     register_all_packages();
 
     LuaStack* stack = engine->getLuaStack();
-    stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+	stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 
-	Data data = FileUtils::getInstance()->getDataFromFile("src/GlobalConfig.conf");
-	ConfigMgr::instance()->initGlobalConfig((const char*)data.getBytes(), data.getSize());
+	{
+		Data data = FileUtils::getInstance()->getDataFromFile("src/config/GlobalConfig.conf");
+		ConfigMgr::instance()->initGlobalConfig((const char*)data.getBytes(), data.getSize());
+	}
 	// ÉèÖÃ½Å±¾ºê
-	LuaMgrIns->registerLuaGlobalVariable("SERVER_TYPE", "CLIENT");
-	Json::Value macro = GlobalConfig.get("MACRO", Json::objectValue);
+	LuaMgrIns->registerLuaGlobalVariable("SERVER_TYPE", "client");
+	Json::Value macro = GlobalConfig.get("lua_macros", Json::objectValue);
 	for (auto mr : macro.getMemberNames()) {
 		LuaMgrIns->registerLuaGlobalVariable(mr.c_str(), macro[mr.c_str()].asCString());
 	}
+	{
+		Data data = FileUtils::getInstance()->getDataFromFile("src/config/protocol.txt");
+		NetConfig::instance()->updateMessage((const char*)data.getBytes(), data.getSize());
+	}
+
 	//CommandLine::instance()->CreateCmdLine();
+
+	Director::getInstance()->getScheduler()->schedule(std::bind(&AppDelegate::onUpdate, this, 0.1f), (void *)this, 0.1f, false, "onUpdate");
 
 	FileUtils::getInstance()->addSearchPath("../../");
 
@@ -129,4 +143,9 @@ void AppDelegate::applicationWillEnterForeground()
     Director::getInstance()->startAnimation();
 
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+}
+
+void AppDelegate::onUpdate(float dt) {
+	ServiceGate::instance()->onRecvAllMessage();
+	LuaMgrIns->executeLua();
 }

@@ -3,24 +3,27 @@
 -- 登录相关模块
 
 -- 声明模块名
-LOGIN_D = {}
-setmetatable(LOGIN_D, {__index = _G})
-local _ENV = LOGIN_D
+
+module("LOGIN_D", package.seeall)
 
 local private_key = "wugdGame"
+local connecting_time = 0
 
 local function connect_callback(agent, arg)
-    if not is_object(agent) then
+    if not is_object(agent) or agent:get_port_no() == 0 then
         trace("连接服务器失败.\n")
+        connecting_time = 0
+        destruct_object(agent)
         return
     end
 
     ME_D.set_agent(agent)
+    connecting_time = 0
     trace("----------------------success connected server-----------------------")
 
     -- 发送验证信息
-    agent:send_message(CMD_INTERNAL_AUTH, 2, tostring(math.random(100000, 999999)), "")
-
+    -- agent:send_message(CMD_INTERNAL_AUTH, 2, tostring(math.random(100000, 999999)), "")
+    agent:send_message(CMD_INTERNAL_AUTH, 2, "22222", "")
     local account  = arg["account"]
     local password = arg["password"]
     local server_id = arg["server_id"] or 1
@@ -49,6 +52,10 @@ function login(account, password, extra_data)
         return
     end
 
+    if os.time() - connecting_time < 10 then
+        return
+    end
+
     local ip, port = GATE_IP, tonumber(GATE_CLIENT_PORT)
     -- 建立连接
     local ret = socket_connect(ip, port, 10000, connect_callback, {
@@ -65,6 +72,7 @@ function login(account, password, extra_data)
         trace("连接服务器(%o:%o)失败。\n", ip, port)
         return false
     end
+    connecting_time = os.time()
 
     return true
 end

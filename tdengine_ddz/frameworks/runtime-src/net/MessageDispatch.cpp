@@ -32,11 +32,13 @@ bool MessageDispatch::unpackBuffer( lua_State* lua, NetMsg* input)
 		lua_pushnil(lua);
 		return false;
 	}
+	lua_pushstring(lua, msgName.c_str());
 	lua_newtable(lua);
 	int idx = 1;
 	for (auto iter : std::get<1>(unpackValue)) {
 		lua_pushnumber(lua, idx++);
 		LuaRegister::pushValues(lua, iter);
+		lua_settable(lua, -3);
 
 	}
 	return true;
@@ -131,6 +133,7 @@ bool MessageDispatch::lua_read_value(td_proto::Values& value, lua_State* lua, td
 			}
 			lua_pop(lua, 1);
 		}
+		break;
 	}
 	case td_proto::TYPE_AU8:
 	case td_proto::TYPE_AI8:

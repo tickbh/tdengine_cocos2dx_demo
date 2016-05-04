@@ -84,8 +84,11 @@ namespace LuaNetwork {
 		}
 		bool success = ServiceMgr::sendBuff(ev, (char*)msg->get(), msg->getSize());
 		lua_pushnumber(L, success ? 0 : -2);
-		if (msg)
-			delete msg;
+		return 1;
+	}
+
+	int get_message_type(lua_State* L) {
+		lua_pushstring(L, "client");
 		return 1;
 	}
     
@@ -116,7 +119,7 @@ namespace LuaNetwork {
         }
 		NetMsg bbos;
 		success = td_proto::encode_proto(bbos, NetConfig::instance()->getConfig(), msg, values);
-		if (success) {
+		if (!success) {
 			return 0;
 		}
 		bbos.endSendMsg();
@@ -174,7 +177,9 @@ namespace LuaNetwork {
 
 	int pack_message(lua_State* L)
 	{
-
+		if (!lua_isstring(L, 1)) {
+			return 0;
+		}
 		std::string msg = lua_tostring(L, 1);
 		auto proto = NetConfig::instance()->getConfig().get_proto_by_name(msg);
 		if (!proto) {
@@ -191,11 +196,11 @@ namespace LuaNetwork {
 		}
 		NetMsg* bbos = new NetMsg;
 		success = td_proto::encode_proto(*bbos, NetConfig::instance()->getConfig(), msg, values);
-		if (success) {
+		if (!success) {
 			delete bbos;
 			return 0;
 		}
-
+		bbos->endSendMsg();
 		lua_tinker::push<NetMsg*>(L, bbos);
 		return 1;
 	}
@@ -220,6 +225,7 @@ namespace LuaNetwork {
 		{ "forwar_to_port", forwar_to_port },
 		{ "pack_message", pack_message },
 		{ "del_message", del_message },
+		{ "get_message_type", get_message_type },
         {NULL, NULL}
     };
     

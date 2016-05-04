@@ -317,7 +317,7 @@ void TDLuaMgr::excuteNewConnect(int cookie, int fd)
 	const char* message = NULL;
 	int err_index = -1, para_count = -1;
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 
 	message = "cmd_new_connection";
 
@@ -366,7 +366,7 @@ void TDLuaMgr::excuteConnectLost(int fd)
 	int err_index = -1, para_count = -1;
 	lua_State* luaState = this->getLuaState();
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 
 	message = "cmd_connection_lost";
 
@@ -411,7 +411,7 @@ void TDLuaMgr::excuteDBResult(int cookie, int ret, const char* errmsg, NetMsg* i
 	int err_index = -1, para_count = -1;
 	lua_State* luaState = this->getLuaState();
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 	message = "msg_db_result";
 
 	// 压入脚本的入口执行函数
@@ -485,7 +485,7 @@ void TDLuaMgr::excuteMessage(int fd, NetMsg* input)
 	int err_index = -1, para_count = -1;
 	lua_State* luaState = this->getLuaState();
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 
 	// 压入脚本的入口执行函数
 	lua_getglobal(luaState, "global_dispatch_command");
@@ -536,7 +536,7 @@ void TDLuaMgr::executeString(std::string pLuaString)
 	int err_index = -1, para_count = -1;
 	lua_State* luaState = this->getLuaState();
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 	// 压入脚本的入口执行函数
 	lua_getglobal(luaState, "run_string");
 	// 压入第二个参数
@@ -578,7 +578,7 @@ int TDLuaMgr::executeFuncWithParam(std::string pFunc, std::string arg)
 	int err_index = -1, para_count = -1;
 	lua_State* luaState = this->getLuaState();
 	// 先压入异常处理函数
-	lua_getglobal(luaState, "error_handler");
+	lua_getglobal(luaState, "error_handle");
 	// 压入脚本的入口执行函数
 	lua_getglobal(luaState, pFunc.c_str());
 	// 压入第二个参数
@@ -620,7 +620,7 @@ int TDLuaMgr::executeFuncWithParam(std::string pFunc, float param1, float param2
     int err_index = -1, para_count = -1;
     lua_State* luaState = this->getLuaState();
     // 先压入异常处理函数
-    lua_getglobal(luaState, "error_handler");
+    lua_getglobal(luaState, "error_handle");
     // 压入脚本的入口执行函数
     lua_getglobal(luaState, pFunc.c_str());
     // 压入第二个参数
@@ -663,7 +663,7 @@ std::string TDLuaMgr::executeFuncWithParamString(std::string pFunc, std::string 
     int err_index = -1, para_count = -1;
     lua_State* luaState = this->getLuaState();
     // 先压入异常处理函数
-    lua_getglobal(luaState, "error_handler");
+    lua_getglobal(luaState, "error_handle");
     // 压入脚本的入口执行函数
     lua_getglobal(luaState, pFunc.c_str());
     // 压入第二个参数

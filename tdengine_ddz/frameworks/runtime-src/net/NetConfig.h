@@ -19,6 +19,7 @@ public:
 	}
 
 	void updateMessage(Json::Value& messageInfo);
+	void updateMessage(const char* data, unsigned long size);
 private:
 
 	td_proto::Config config;

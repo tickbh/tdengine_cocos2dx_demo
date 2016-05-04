@@ -1,7 +1,5 @@
 
-BASE64_D = {}
-setmetatable(BASE64_D, {__index = _G})
-local _ENV = BASE64_D
+module("BASE64_D", package.seeall)
 
 local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 

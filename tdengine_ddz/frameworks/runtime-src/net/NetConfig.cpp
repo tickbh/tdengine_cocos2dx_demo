@@ -32,7 +32,7 @@ void NetConfig::updateMessage(Json::Value& messageInfo)
 		field.insert(make_pair(iter, td_proto::Field(value["index"].asInt(), value["pattern"].asString())));
 	}
 	for (auto iter : proto_json.getMemberNames()) {
-		auto value = field_json[iter];
+		auto value = proto_json[iter];
 		std::vector<std::string> args;
 		for (auto it_array : value["args"]) {
 			args.push_back(it_array.asString());
@@ -40,4 +40,24 @@ void NetConfig::updateMessage(Json::Value& messageInfo)
 		proto.insert(make_pair(iter, td_proto::Proto(value["msg_type"].asString(), args)));
 	}
 	config = td_proto::Config(field, proto);
+}
+
+
+void NetConfig::updateMessage(const char* data, unsigned long size)
+{
+	Json::Value netConfig;
+	bool success = true;
+	Json::Reader reader;
+	if (data == NULL) {
+		reader.parse("{}", netConfig, false);
+		success = false;
+	}
+	reader.parse(data, netConfig, false);
+	if (netConfig.isNull()) {
+		reader.parse("{}", netConfig, false);
+		success = false;
+	}
+	if (success) {
+		updateMessage(netConfig);
+	}
 }

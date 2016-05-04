@@ -1,10 +1,7 @@
 -- importd.lua
 -- 读取csv文件，并转成相应的格式
 -- 声明模块名
-IMPORT_D = {}
-setmetatable(IMPORT_D, {__index = _G})
-local _ENV = IMPORT_D
-
+module("IMPORT_D", package.seeall)
 local splitChar = "\t"
 
 -- 定义内部接口，按照字母顺序排序

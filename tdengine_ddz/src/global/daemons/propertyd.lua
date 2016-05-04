@@ -3,9 +3,7 @@
 -- 负责物件模块
 
 -- 声明模块名
-PROPERTY_D = {}
-setmetatable(PROPERTY_D, {__index = _G})
-local _ENV = PROPERTY_D
+module("PROPERTY_D", package.seeall)
 
 local item_file = "data/txt/ItemInfo.txt"
 local equip_file = "data/txt/EquipInfo.txt"

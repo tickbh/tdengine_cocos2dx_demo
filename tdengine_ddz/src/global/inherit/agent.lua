@@ -160,10 +160,13 @@ function AGENT_TDCLS:send_message(msg, ...)
     -- trace("###################1 msg : %s ###################\n%o\n", msg, { ... });
     local port_no = self.port_no;
     if port_no == -1 then
-        return;
+        return
     end
 
     local net_msg = pack_message(msg, ...)
+    if not net_msg then
+        return
+    end
     if SERVER_TYPE == "client" and get_network_seq_id then
         net_msg:set_seq_fd(get_network_seq_id(port_no))
     end

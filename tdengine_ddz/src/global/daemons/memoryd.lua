@@ -4,9 +4,9 @@
 --table、metatable、funciton's upvalue
 
 -- 声明模块名
-MEMORY_D = {}
-setmetatable(MEMORY_D, {__index = _G})
-local _ENV = MEMORY_D
+
+module("MEMORY_D", package.seeall)
+
 -- 协程
 local mxc
 

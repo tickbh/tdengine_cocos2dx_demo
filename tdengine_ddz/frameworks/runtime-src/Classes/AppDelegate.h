@@ -34,6 +34,8 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+
+	void onUpdate(float dt);
 };
 
 #endif  // __APP_DELEGATE_H__

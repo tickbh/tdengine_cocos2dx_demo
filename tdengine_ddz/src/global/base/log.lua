@@ -1,9 +1,8 @@
 --log.lua
 --Created by wugd
 --日志类相关的信息
-LOG = {}
-setmetatable(LOG, {__index = _G})
-local _ENV = LOG
+
+module("LOG", package.seeall)
 
 LOG_ERROR = 1
 LOG_WARN = 2

@@ -28,11 +28,13 @@ local function main()
     load_folder("global/clone")
     load_folder("global/daemons")
 
-    load_folder("client/global")
+    load_folder("share")
+
+    load_folder("client/global","md5")
     load_folder("client/clone");
     update("client/daemons/logind")
     update("client/daemons/med")
-    
+
     load_folder("ui")
 
     local  login_scene = MAIN_SCENE_CLASS:create()

@@ -101,8 +101,6 @@ void ServiceGate::dispathMessage( int sock )
 	{
 		NetMsg* input = new NetMsg(message, nextSize);
 		LuaMgrIns->excuteMessage(sock, input);
-		delete input;
-
 		message = ev->readInfo->getNextMessage(nextSize);
 	}
 }
