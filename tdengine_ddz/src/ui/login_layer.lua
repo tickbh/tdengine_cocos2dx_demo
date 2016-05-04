@@ -36,6 +36,7 @@ function LOGIN_LAYER_CLASS:onInit()
     self:addChild(account_eb)
     account_eb:setPosition( cc.p(500,200) )
     account_eb:setPlaceHolder("click to input text")
+    account_eb:setText("aa")
     self.account_eb = account_eb
 
     local back = cc.Scale9Sprite:create(res)
@@ -43,12 +44,15 @@ function LOGIN_LAYER_CLASS:onInit()
     self:addChild(passwd_eb)
     passwd_eb:setPosition( cc.p(500,153) )
     passwd_eb:setPlaceHolder("click to input text")
+    passwd_eb:setText("bb")
     self.passwd_eb = passwd_eb
 
 
     local function touchEvent(sender,eventType)
         trace("account info is %o", self.account_eb:getText())
         trace("passwd_eb info is %o", self.passwd_eb:getText())
+        LOGIN_D.login(self.account_eb:getText(), self.passwd_eb:getText())
+
         if eventType == ccui.TouchEventType.began then
             print("Touch Down")
         elseif eventType == ccui.TouchEventType.moved then

@@ -19,6 +19,12 @@
     <Filter Include="lua_tinker">
       <UniqueIdentifier>{8d43cdfc-4aba-45c4-8e47-fb4ccdb3cc44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bit">
+      <UniqueIdentifier>{0a79deda-ba67-4629-b2bd-aafcb68bf1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="md5">
+      <UniqueIdentifier>{5771d004-9ce9-4409-b213-d48d08011b1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cjson\lua_cjson.c">
@@ -32,6 +38,21 @@
     </ClCompile>
     <ClCompile Include="lua_tinker\lua_tinker.cpp">
       <Filter>lua_tinker</Filter>
+    </ClCompile>
+    <ClCompile Include="bit\bit.c">
+      <Filter>bit</Filter>
+    </ClCompile>
+    <ClCompile Include="md5\md5.c">
+      <Filter>md5</Filter>
+    </ClCompile>
+    <ClCompile Include="md5\md5lib.c">
+      <Filter>md5</Filter>
+    </ClCompile>
+    <ClCompile Include="md5\des56.c">
+      <Filter>md5</Filter>
+    </ClCompile>
+    <ClCompile Include="md5\ldes56.c">
+      <Filter>md5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="lua_tinker\LuaClass.h">
       <Filter>lua_tinker</Filter>
+    </ClInclude>
+    <ClInclude Include="bit\bit.h">
+      <Filter>bit</Filter>
+    </ClInclude>
+    <ClInclude Include="md5\ldes56.h">
+      <Filter>md5</Filter>
+    </ClInclude>
+    <ClInclude Include="md5\md5.h">
+      <Filter>md5</Filter>
+    </ClInclude>
+    <ClInclude Include="md5\des56.h">
+      <Filter>md5</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

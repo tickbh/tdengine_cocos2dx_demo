@@ -22,6 +22,17 @@ update("global/base/util")
 
 local function main()
     update("global/base/load_folder")
+    load_folder("global/include")
+    load_folder("global/base")
+    load_folder("global/inherit")
+    load_folder("global/clone")
+    load_folder("global/daemons")
+
+    load_folder("client/global")
+    load_folder("client/clone");
+    update("client/daemons/logind")
+    update("client/daemons/med")
+    
     load_folder("ui")
 
     local  login_scene = MAIN_SCENE_CLASS:create()

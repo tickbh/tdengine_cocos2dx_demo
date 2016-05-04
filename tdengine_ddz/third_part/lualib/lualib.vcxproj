@@ -67,17 +67,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bit\bit.c" />
     <ClCompile Include="cjson\fpconv.c" />
     <ClCompile Include="cjson\lua_cjson.c" />
     <ClCompile Include="cjson\strbuf.c" />
     <ClCompile Include="lua_tinker\lua_tinker.cpp" />
+    <ClCompile Include="md5\des56.c" />
+    <ClCompile Include="md5\ldes56.c" />
+    <ClCompile Include="md5\md5.c" />
+    <ClCompile Include="md5\md5lib.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bit\bit.h" />
     <ClInclude Include="cjson\fpconv.h" />
     <ClInclude Include="cjson\lua_cjson.h" />
     <ClInclude Include="cjson\strbuf.h" />
     <ClInclude Include="lua_tinker\LuaClass.h" />
     <ClInclude Include="lua_tinker\lua_tinker.h" />
+    <ClInclude Include="md5\des56.h" />
+    <ClInclude Include="md5\ldes56.h" />
+    <ClInclude Include="md5\md5.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

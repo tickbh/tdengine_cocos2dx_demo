@@ -101,6 +101,9 @@
     <ClInclude Include="..\lua\LuaNetwork.h">
       <Filter>lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\mgr\ConfigMgr.h">
+      <Filter>mgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="..\lua\LuaNetwork.cpp">
       <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mgr\ConfigMgr.cpp">
+      <Filter>mgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

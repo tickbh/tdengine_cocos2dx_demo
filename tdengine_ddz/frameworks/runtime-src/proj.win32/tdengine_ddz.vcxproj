@@ -196,6 +196,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClInclude Include="..\lua\LuaNetwork.h" />
     <ClInclude Include="..\lua\LuaRegister.h" />
     <ClInclude Include="..\lua\LuaUtil.h" />
+    <ClInclude Include="..\mgr\ConfigMgr.h" />
     <ClInclude Include="..\mgr\netmgr\ServiceGate.h" />
     <ClInclude Include="..\mgr\netmgr\ServiceMgr.h" />
     <ClInclude Include="..\mgr\netmgr\SocketEvent.h" />
@@ -223,6 +224,7 @@ xcopy /Y /Q "$(ProjectDir)..\Classes\ide-support\lang" "$(LocalDebuggerWorkingDi
     <ClCompile Include="..\lua\LuaNetwork.cpp" />
     <ClCompile Include="..\lua\LuaRegister.cpp" />
     <ClCompile Include="..\lua\LuaUtil.cpp" />
+    <ClCompile Include="..\mgr\ConfigMgr.cpp" />
     <ClCompile Include="..\mgr\netmgr\ServiceGate.cpp" />
     <ClCompile Include="..\mgr\netmgr\ServiceMgr.cpp" />
     <ClCompile Include="..\mgr\netmgr\SocketEvent.cpp" />

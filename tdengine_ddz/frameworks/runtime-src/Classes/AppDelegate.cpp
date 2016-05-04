@@ -14,7 +14,13 @@
 #endif
 #include "lua/LuaUtil.h"
 #include "../mgr/TDLuaMgr.h"
-
+#include "../lua/LuaNetwork.h"
+#include "../mgr/ConfigMgr.h"
+extern "C" {
+#include "bit/bit.h"
+#include "cjson/lua_cjson.h"
+#include "md5/md5.h"
+}
 using namespace CocosDenshion;
 
 USING_NS_CC;
@@ -65,6 +71,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
 	LuaUtil::openLibs(L);
+	LuaNetwork::openLibs(L);
+	luaopen_bit(L);
+	luaopen_cjson(L);
+	luaopen_md5_core(L);
 
 	//初始化lua加载函数
 	TDLuaMgr::instance();
@@ -73,6 +83,16 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     LuaStack* stack = engine->getLuaStack();
     stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+
+	Data data = FileUtils::getInstance()->getDataFromFile("src/GlobalConfig.conf");
+	ConfigMgr::instance()->initGlobalConfig((const char*)data.getBytes(), data.getSize());
+	// 设置脚本宏
+	LuaMgrIns->registerLuaGlobalVariable("SERVER_TYPE", "CLIENT");
+	Json::Value macro = GlobalConfig.get("MACRO", Json::objectValue);
+	for (auto mr : macro.getMemberNames()) {
+		LuaMgrIns->registerLuaGlobalVariable(mr.c_str(), macro[mr.c_str()].asCString());
+	}
+	//CommandLine::instance()->CreateCmdLine();
 
 	FileUtils::getInstance()->addSearchPath("../../");
 
