@@ -82,7 +82,7 @@ function msg_room_message(user, oper, info)
         user:send_message(CMD_ROOM_MESSAGE, "enter_desk", {})
     elseif oper == "success_enter_desk" then
         if info.rid == get_ob_rid(user) then
-            desk_ready()
+            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "ready"})
         end
         trace("%s成功进入桌子:\"%d\", 在位置:%d", info.rid, info.idx, info.wheel_idx)
     elseif oper == "pre_room" then

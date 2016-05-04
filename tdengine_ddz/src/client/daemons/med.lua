@@ -39,6 +39,8 @@ function me_updated(agent, data)
     me_rid = get_ob_rid(user)
     me_agent = user
 
+    set_enter_game(true)
+
     g_scene:openMainLayer()
 end
 
