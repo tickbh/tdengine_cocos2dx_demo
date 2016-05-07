@@ -92,8 +92,6 @@ function msg_room_message(user, oper, info)
     end
 end
 
-
-
 function msg_enter_room(user, info)
     if info.ret and info.ret < 0 then
         trace("进入房间错误:\"%s\"", info.err_msg)
