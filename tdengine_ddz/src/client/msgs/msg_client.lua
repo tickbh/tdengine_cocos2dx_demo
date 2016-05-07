@@ -89,6 +89,8 @@ function msg_room_message(user, oper, info)
         end
     elseif oper == "desk_info" then
         raise_issue(EVENT_DESK_INFO, user, info)
+    else
+        raise_issue(EVENT_ROOM_MSG_RECEIVE, user, oper, info)
     end
 end
 
