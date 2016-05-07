@@ -199,6 +199,17 @@ function DDZ_DESK_LAYER_CLASS:remove_all_poker()
     self.poker_list_spirte = {}
 end
 
+function DDZ_DESK_LAYER_CLASS:get_my_idx()
+    self.desk_info = self.desk_info or {}
+    trace("desk_info is %o", self.desk_info)
+    for idx,info in pairs(self.desk_info.wheels or {}) do
+        if info.rid == ME_D.get_rid() then
+            return idx
+        end
+    end
+    return -1
+end
+
 function DDZ_DESK_LAYER_CLASS:hide_all_btn()
     self.ready_btn:setVisible(false)
     self.choose_lord:setVisible(false)
@@ -210,15 +221,17 @@ end
 
 function DDZ_DESK_LAYER_CLASS:recover_first_status() 
     self:remove_all_poker()
+    self:hide_all_btn()
     self.ready_btn:setVisible(true)
 end
 
 function DDZ_DESK_LAYER_CLASS:turn_index(idx)
     self:hide_all_btn()
     if self.cur_step == DDZ_STEP_LORD then
-
-        self.choose_lord:setVisible(false)
-        self.cancel_lord:setVisible(false)
+        if idx == self:get_my_idx() then
+            self.choose_lord:setVisible(true)
+            self.cancel_lord:setVisible(true)
+        end
     elseif self.cur_step == DDZ_STEP_PLAY then
 
     end
@@ -243,8 +256,10 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         if info.cur_step == DDZ_STEP_NONE then
             self:recover_first_status()
         end
-    elseif oper == "step_change" then
+    elseif oper == "desk_info" then
         self.desk_info = info
+    elseif oper == "op_idx" then
+        self:turn_index(info.cur_op_idx)
     end
 end
 
