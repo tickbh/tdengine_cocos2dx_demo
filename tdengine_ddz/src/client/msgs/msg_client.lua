@@ -87,6 +87,8 @@ function msg_room_message(user, oper, info)
         if info.room_name then
             user:send_message(CMD_ENTER_ROOM, {room_name = info.room_name})            
         end
+    elseif oper == "desk_info" then
+        raise_issue(EVENT_DESK_INFO, user, info)
     end
 end
 

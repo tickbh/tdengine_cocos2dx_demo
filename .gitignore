@@ -15,4 +15,5 @@ Debug.win32
 *.ib_pdb_index
 *.opensdf
 *.sdf
+*.suo
 /tdengine_ddz/frameworks/runtime-src/proj.win32/Debug/td_proto_cpp.exe

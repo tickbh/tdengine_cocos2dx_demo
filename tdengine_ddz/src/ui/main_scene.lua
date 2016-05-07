@@ -28,6 +28,12 @@ function MAIN_SCENE_CLASS:openDdzRoomLayer()
     self:addChild(layer)
 end
 
+function MAIN_SCENE_CLASS:openDdzDeskLayer()
+    self:removeAllChildren()
+    local layer = DDZ_DESK_LAYER_CLASS:create()
+    self:addChild(layer)
+end
+
 function MAIN_SCENE_CLASS:onCleanup_()
 
 end
@@ -35,6 +41,7 @@ end
 function MAIN_SCENE_CLASS:onEnter_()
     register_as_audience(self.uid, {EVENT_ENTER_GAME={func = self.openMainLayer, args = {self} }})
     register_as_audience(self.uid, {EVENT_ENTER_ROOM={func = self.openDdzRoomLayer, args = {self} }})
+    register_as_audience(self.uid, {EVENT_ENTER_DESK={func = self.openDdzDeskLayer, args = {self} }})
 end
 
 function MAIN_SCENE_CLASS:onExit_()
