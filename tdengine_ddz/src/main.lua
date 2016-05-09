@@ -38,6 +38,7 @@ local function main()
     load_folder("client/msgs")
     update("client/daemons/logind")
     update("client/daemons/med")
+    update("client/daemons/ddz_d")
 
     load_folder("ui")
 

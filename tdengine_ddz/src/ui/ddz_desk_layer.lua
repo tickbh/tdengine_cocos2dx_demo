@@ -276,6 +276,11 @@ function DDZ_DESK_LAYER_CLASS:add_ok_round()
                 trace("请选择您要出的牌")
                 return
             end
+            local poker_type = DDZ_D.get_card_type(select_list)
+            if poker_type == DDZ_D.TYPE_ERROR then
+                trace("您所出的牌不符合规则")
+                return 
+            end
             ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "deal_poker", poker_list = select_list})
             print("Touch Up")
         elseif eventType == ccui.TouchEventType.canceled then
