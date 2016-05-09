@@ -79,7 +79,7 @@ function msg_room_message(user, oper, info)
     trace("user = %o, oper = %o, info = %o", user, oper, info)
     if oper == "success_enter_room" then
         trace("成功进入房间:\"%s\"", info.room_name)
-        -- user:send_message(CMD_ROOM_MESSAGE, "enter_desk", {})
+        raise_issue(EVENT_ENTER_ROOM, user)
     elseif oper == "success_enter_desk" then
         trace("%s成功进入桌子:\"%d\", 在位置:%d", info.rid, info.idx, info.wheel_idx)
         if ME_D.get_rid() == info.rid then
@@ -93,6 +93,8 @@ function msg_room_message(user, oper, info)
         end
     -- elseif oper == "desk_info" then
     --     raise_issue(EVENT_DESK_INFO, user, info)
+    elseif oper == "pre_desk" then
+        user:send_message(CMD_ROOM_MESSAGE, "enter_desk", { idx = info.enter_desk_idx})            
     else
         raise_issue(EVENT_ROOM_MSG_RECEIVE, user, oper, info)
     end
@@ -105,7 +107,6 @@ function msg_enter_room(user, info)
     end
     trace("msg_enter_room info = %o", info)
     trace("成功进入房间:\"%s\"", info.room_name)
-    raise_issue(EVENT_ENTER_ROOM, user)
 end
 
 function msg_leave_room(user, info)    

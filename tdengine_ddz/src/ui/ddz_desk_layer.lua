@@ -348,6 +348,17 @@ function DDZ_DESK_LAYER_CLASS:get_my_idx()
     return -1
 end
 
+function DDZ_DESK_LAYER_CLASS:get_my_poker_list()
+    self.desk_info = self.desk_info or {}
+    trace("desk_info is %o", self.desk_info)
+    for idx,info in pairs(self.desk_info.wheels or {}) do
+        if info.rid == ME_D.get_rid() then
+            return info.poker_list
+        end
+    end
+    return {}
+end
+
 function DDZ_DESK_LAYER_CLASS:hide_all_btn()
     self.ready_btn:setVisible(false)
     self.choose_lord:setVisible(false)
@@ -400,14 +411,15 @@ end
 
 
 function DDZ_DESK_LAYER_CLASS:turn_index(idx)
-    self:hide_all_btn()
     if self.cur_step == DDZ_STEP_LORD then
+        self:hide_all_btn()
         if idx == self:get_my_idx() then
             self.choose_lord:setVisible(true)
             self.cancel_lord:setVisible(true)
         end
         self:show_count_down_tag(idx, 10)
     elseif self.cur_step == DDZ_STEP_PLAY then
+        self:hide_all_btn()
         if idx == self:get_my_idx() then
             self.cancel_round:setVisible(true)
             self.ok_round:setVisible(true)
@@ -417,30 +429,43 @@ function DDZ_DESK_LAYER_CLASS:turn_index(idx)
     end
 end
 
+function DDZ_DESK_LAYER_CLASS:turn_step(step)
+    self.cur_step = step
+    if self.cur_step == DDZ_STEP_NONE then
+        self:recover_first_status()
+    elseif self.cur_step == DDZ_STEP_LORD then
+        self:hide_all_ready_tip()
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:reset_by_poker_list(poker_list)
+    self:remove_all_poker()
+    for i,poker in ipairs(poker_list or {}) do
+        local poker = POKER_SPRITE_CLASS:create({id=poker})
+        poker:setPosition(cc.p(200 + 30 * i,200))
+        self:addChild(poker)
+        table.insert(self.poker_list_spirte, poker)
+    end
+end
+
 function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
     trace("DDZ_DESK_LAYER_CLASS:room_msg_receive %o %o", oper, info)
     if oper == "poker_init" then
-        self:remove_all_poker()
-        for i,poker in ipairs(info.poker_list or {}) do
-            local poker = POKER_SPRITE_CLASS:create({id=poker})
-            poker:setPosition(cc.p(200 + 30 * i,200))
-            self:addChild(poker)
-            table.insert(self.poker_list_spirte, poker)
-        end
+        self:reset_by_poker_list(info.poker_list)
     elseif oper == "success_user_ready" then
         if info.rid == ME_D.get_rid() then
             self.ready_btn:setVisible(false)
         end
         self:show_ready_status(info.idx)
     elseif oper == "step_change" then
-        self.cur_step = info.cur_step
-        if info.cur_step == DDZ_STEP_NONE then
-            self:recover_first_status()
-        elseif self.cur_step == DDZ_STEP_LORD then
-            self:hide_all_ready_tip()
-        end
+        self:turn_step(info.cur_step)
     elseif oper == "desk_info" then
         self.desk_info = info
+        self:turn_step(info.cur_step or DDZ_STEP_NONE)
+        self:turn_index(info.cur_op_idx or -1)
+        if info.cur_step ~= DDZ_STEP_NONE then
+            self:reset_by_poker_list(self:get_my_poker_list())
+        end
     elseif oper == "op_idx" then
         self:turn_index(info.cur_op_idx)
     end
