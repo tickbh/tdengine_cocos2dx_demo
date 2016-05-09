@@ -72,21 +72,21 @@ function DDZ_DESK_LAYER_CLASS:add_listener()
         local is_move = touchRect.width > 30
 
         trace("touchRect is %o", touchRect)
+        local pre_inter_rect = nil
         for i=#self.poker_list_spirte,1,-1 do
             local poker = self.poker_list_spirte[i]
-            if cc.rectIntersectsRect(touchRect, poker:getRect()) then
-                poker:reverse_select()
+            local rect = cc.rectIntersection(touchRect, poker:getRect())
+            trace("inter rect is %o", rect)
+            if rect.width >= 0 and rect.height >= 0 then
+                if not pre_inter_rect or not is_rect_contains_rect(pre_inter_rect, rect) then
+                    poker:reverse_select()
+                end
                 if not is_move then
                     break
                 end
+                pre_inter_rect = rect
             end
         end
-        -- for _,poker in ipairs(self.poker_list_spirte) do
-        --     trace("poker rect is %o", poker:getRect())
-        --     if cc.rectIntersectsRect(touchRect, poker:getRect()) then
-        --         poker:reverse_select()
-        --     end
-        -- end
         self.touchBeginPoint = nil
     end
 
@@ -254,6 +254,16 @@ function DDZ_DESK_LAYER_CLASS:add_cancel_round()
     self.cancel_round = cancel_round
 end
 
+function DDZ_DESK_LAYER_CLASS:get_poker_select()
+    local select_ids = {}
+    for _,poker in ipairs(self.poker_list_spirte) do
+        if poker:get_select() then
+            table.insert(select_ids, poker:get_data_id())
+        end
+    end
+    return select_ids
+end
+
 function DDZ_DESK_LAYER_CLASS:add_ok_round()
     local function touchEvent(sender,eventType)
         if eventType == ccui.TouchEventType.began then
@@ -261,7 +271,12 @@ function DDZ_DESK_LAYER_CLASS:add_ok_round()
         elseif eventType == ccui.TouchEventType.moved then
             print("Touch Move")
         elseif eventType == ccui.TouchEventType.ended then
-            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "round", is_choose = 0})
+            local select_list = self:get_poker_select()
+            if #select_list == 0 then
+                trace("请选择您要出的牌")
+                return
+            end
+            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "deal_poker", poker_list = select_list})
             print("Touch Up")
         elseif eventType == ccui.TouchEventType.canceled then
             print("Touch Cancelled")
@@ -388,7 +403,12 @@ function DDZ_DESK_LAYER_CLASS:turn_index(idx)
         end
         self:show_count_down_tag(idx, 10)
     elseif self.cur_step == DDZ_STEP_PLAY then
-
+        if idx == self:get_my_idx() then
+            self.cancel_round:setVisible(true)
+            self.ok_round:setVisible(true)
+            self.tip_tbn:setVisible(true)
+        end
+        self:show_count_down_tag(idx, 30)
     end
 end
 
