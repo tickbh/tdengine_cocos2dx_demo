@@ -153,7 +153,7 @@ bool MessageDispatch::lua_read_value(td_proto::Values& value, lua_State* lua, td
 			auto new_index = index >= 0 ? index : index - 1;
 			lua_gettable(lua, new_index);
 			td_proto::Values sub_val;
-			auto success = lua_read_value(sub_val, lua, config, -1, td_proto::get_name_by_type(t));
+			auto success = lua_read_value(sub_val, lua, config, -1, td_proto::get_name_by_type(t - (td_proto::TYPE_AU8 - td_proto::TYPE_U8)));
 			if (!success) {
 				return false;
 			}
