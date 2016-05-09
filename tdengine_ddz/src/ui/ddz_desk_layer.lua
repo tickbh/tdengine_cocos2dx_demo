@@ -7,6 +7,8 @@ function DDZ_DESK_LAYER_CLASS:ctor()
     self:enableNodeEvents()
     self.uid = new_cookie()
     self.poker_list_spirte = {}
+    self.count_downs = {}
+    self.ready_tip = {}
     self:onInit()
 end
 
@@ -28,6 +30,122 @@ function DDZ_DESK_LAYER_CLASS:onInit()
     self:add_tip_tbn()
 
     self:recover_first_status()
+
+    self:add_count_downs()
+    self:add_ready_tip()
+
+    self:add_listener()
+
+    for i,poker in ipairs({0x1, 0x2, 0x11, 0x12, 0x19}) do
+        local poker = POKER_SPRITE_CLASS:create({id=poker})
+        poker:setPosition(cc.p(200 + 30 * i,200))
+        self:addChild(poker)
+        table.insert(self.poker_list_spirte, poker)
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:add_listener()
+    -- handing touch events
+    self.touchBeginPoint = nil
+    local function onTouchBegan(touch, event)
+        local location = touch:getLocation()
+        trace("onTouchBegan: %o, %o", location.x, location.y)
+        self.touchBeginPoint = {x = location.x, y = location.y}
+        -- CCTOUCHBEGAN event must return true
+        return true
+    end
+
+    local function onTouchMoved(touch, event)
+        local location = touch:getLocation()
+        trace("onTouchMoved: %o, %o", location.x, location.y)
+    end
+
+    local function onTouchEnded(touch, event)
+        if not self.touchBeginPoint then
+            return
+        end
+        local location = touch:getLocation()
+        trace("onTouchEnded: %o, %o", location.x, location.y)
+        trace("self.touchBeginPoint is %o", self.touchBeginPoint)
+        local touchRect = cc.rect(math.min(self.touchBeginPoint.x, location.x), math.min(self.touchBeginPoint.y, location.y),
+            math.abs(self.touchBeginPoint.x - location.x), math.abs(self.touchBeginPoint.y - location.y))
+        local is_move = touchRect.width > 30
+
+        trace("touchRect is %o", touchRect)
+        for i=#self.poker_list_spirte,1,-1 do
+            local poker = self.poker_list_spirte[i]
+            if cc.rectIntersectsRect(touchRect, poker:getRect()) then
+                poker:reverse_select()
+                if not is_move then
+                    break
+                end
+            end
+        end
+        -- for _,poker in ipairs(self.poker_list_spirte) do
+        --     trace("poker rect is %o", poker:getRect())
+        --     if cc.rectIntersectsRect(touchRect, poker:getRect()) then
+        --         poker:reverse_select()
+        --     end
+        -- end
+        self.touchBeginPoint = nil
+    end
+
+    local listener = cc.EventListenerTouchOneByOne:create()
+    listener:registerScriptHandler(onTouchBegan,cc.Handler.EVENT_TOUCH_BEGAN )
+    listener:registerScriptHandler(onTouchMoved,cc.Handler.EVENT_TOUCH_MOVED )
+    listener:registerScriptHandler(onTouchEnded,cc.Handler.EVENT_TOUCH_ENDED )
+    local eventDispatcher = self:getEventDispatcher()
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, self)
+end
+
+function DDZ_DESK_LAYER_CLASS:add_ready_tip()
+    local ready_pre = cc.Label:createWithSystemFont("准备", "Arial", 40)
+        :move(cc.p(141, 346))
+        :addTo(self)
+    self.ready_tip["pre"] = ready_pre
+
+    local ready_my = cc.Label:createWithSystemFont("准备", "Arial", 40)
+        :move(cc.p(487, 187))
+        :addTo(self)
+    self.ready_tip["my"] = ready_my
+
+    local ready_after = cc.Label:createWithSystemFont("准备", "Arial", 40)
+        :move(cc.p(744, 377))
+        :addTo(self)
+    self.ready_tip["after"] = ready_after
+
+    self:hide_all_ready_tip()
+end
+
+function DDZ_DESK_LAYER_CLASS:add_count_downs()
+    local count_down_pre = COUNT_DOWN_CLASS:create({left_time = 100})
+    count_down_pre:setPosition(cc.p(141, 346))
+    self:addChild(count_down_pre)
+    self.count_downs["pre"] = count_down_pre
+
+    local count_down_my = COUNT_DOWN_CLASS:create({left_time = 100})
+    count_down_my:setPosition(cc.p(487, 187))
+    self:addChild(count_down_my)
+    self.count_downs["my"] = count_down_my 
+
+    local count_down_after = COUNT_DOWN_CLASS:create({left_time = 100})
+    count_down_after:setPosition(cc.p(744, 377))
+    self:addChild(count_down_after)
+    self.count_downs["after"] = count_down_after 
+
+    self:hide_all_count_down()
+end
+
+function DDZ_DESK_LAYER_CLASS:hide_all_ready_tip()
+    for _,node in pairs(self.ready_tip) do
+        node:hide()
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:hide_all_count_down()
+    for _,node in pairs(self.count_downs) do
+        node:hide()
+    end
 end
 
 function DDZ_DESK_LAYER_CLASS:add_ready_btn()
@@ -222,8 +340,44 @@ end
 function DDZ_DESK_LAYER_CLASS:recover_first_status() 
     self:remove_all_poker()
     self:hide_all_btn()
+    self:hide_all_count_down()
+    self:hide_all_ready_tip()
     self.ready_btn:setVisible(true)
 end
+
+function DDZ_DESK_LAYER_CLASS:calc_idx_tag(idx)
+    local my_idx = self:get_my_idx()
+    if my_idx == idx then
+        return "my"
+    elseif (my_idx + 1) % 3 == idx % 3 then
+        return "after"
+    elseif (my_idx - 1 + 3) % 3 == idx % 3 then
+        return "pre"
+    else
+        return "unknow"
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:show_count_down_tag(idx, left_time)
+    self:hide_all_count_down()
+    local tag = self:calc_idx_tag(idx)
+    trace("DDZ_DESK_LAYER_CLASS:show_count_down_tag tag = %o idx = %o, count_downs = %o", tag, idx, self.count_downs)
+    local count_down = self.count_downs[tag]
+    if count_down then
+        count_down:set_left_time(left_time)
+        count_down:show()
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:show_ready_status(idx)
+    local tag = self:calc_idx_tag(idx)
+    trace("DDZ_DESK_LAYER_CLASS:show_ready_status tag = %o", tag)
+    local ready_tip = self.ready_tip[tag]
+    if ready_tip then
+        ready_tip:show()
+    end
+end
+
 
 function DDZ_DESK_LAYER_CLASS:turn_index(idx)
     self:hide_all_btn()
@@ -232,6 +386,7 @@ function DDZ_DESK_LAYER_CLASS:turn_index(idx)
             self.choose_lord:setVisible(true)
             self.cancel_lord:setVisible(true)
         end
+        self:show_count_down_tag(idx, 10)
     elseif self.cur_step == DDZ_STEP_PLAY then
 
     end
@@ -251,10 +406,13 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         if info.rid == ME_D.get_rid() then
             self.ready_btn:setVisible(false)
         end
+        self:show_ready_status(info.idx)
     elseif oper == "step_change" then
         self.cur_step = info.cur_step
         if info.cur_step == DDZ_STEP_NONE then
             self:recover_first_status()
+        elseif self.cur_step == DDZ_STEP_LORD then
+            self:hide_all_ready_tip()
         end
     elseif oper == "desk_info" then
         self.desk_info = info
