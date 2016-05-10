@@ -16,6 +16,8 @@ function DDZ_DESK_LAYER_CLASS:ctor()
     --底牌的列表
     self.down_poker_list = {}
 
+    self.last_poker_list = nil
+
     self.ready_tip = {}
     self:onInit()
 end
@@ -261,7 +263,7 @@ end
 function DDZ_DESK_LAYER_CLASS:add_cancel_round()
     local function touchEvent(sender,eventType)
         if eventType == ccui.TouchEventType.ended then
-            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "round", is_choose = 0})
+            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "deal_poker", is_play = 0})
         end
     end
 
@@ -493,7 +495,7 @@ function DDZ_DESK_LAYER_CLASS:show_play_poker(idx, poker_list)
 end
 
 
-function DDZ_DESK_LAYER_CLASS:turn_index(idx)
+function DDZ_DESK_LAYER_CLASS:turn_index(idx, poker_list)
     if self.cur_step == DDZ_STEP_LORD then
         self:hide_all_btn()
         if idx == self:get_my_idx() then
@@ -503,10 +505,15 @@ function DDZ_DESK_LAYER_CLASS:turn_index(idx)
         self:show_count_down_tag(idx, 10)
     elseif self.cur_step == DDZ_STEP_PLAY then
         self:hide_all_btn()
+        self.last_poker_list = poker_list
         if idx == self:get_my_idx() then
             self.cancel_round:setVisible(true)
             self.ok_round:setVisible(true)
             self.tip_tbn:setVisible(true)
+            self.cancel_round:setEnabled(true)
+            if not self.last_poker_list then
+                self.cancel_round:setEnabled(false)
+            end
         end
         self:show_count_down_tag(idx, 30)
         self:hide_play_poker(idx)
@@ -629,7 +636,7 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         end
         self:show_down_poker(info.down_poker)
     elseif oper == "op_idx" then
-        self:turn_index(info.cur_op_idx)
+        self:turn_index(info.cur_op_idx, info.poker_list)
     elseif oper == "deal_poker" then
         if info.is_play == 1 or (info.poker_list and #info.poker_list > 0) then
             local idx_info = self:get_idx_info(info.idx)
