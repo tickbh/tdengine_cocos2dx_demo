@@ -9,6 +9,10 @@ function DDZ_DESK_LAYER_CLASS:ctor()
     self.poker_list_spirte = {}
     self.count_downs = {}
     self.user_heads = {}
+    --出牌的列表
+    self.play_poker_lists = {}
+    --底牌的列表
+    self.own_poker_lists = {}
     self.ready_tip = {}
     self:onInit()
 end
@@ -384,6 +388,86 @@ function DDZ_DESK_LAYER_CLASS:show_ready_status(idx)
     end
 end
 
+function DDZ_DESK_LAYER_CLASS:hide_play_poker(idx)
+    local tag = self:calc_idx_tag(idx)
+    local list = self.play_poker_lists[tag]
+    if list then
+        for _,v in ipairs(list) do
+            v:removeSelf()
+        end
+        self.play_poker_lists[tag] = {}
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:clear_play_poker()
+    for i=1,3 do
+        self:hide_play_poker(i)
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:show_play_poker(idx, poker_list)
+    self:hide_play_poker(idx)
+    local tag = self:calc_idx_tag(idx)
+    if not poker_list or #poker_list == 0 then
+        if tag == "pre" or tag == "after" then
+            local start_y = 600
+            local start_x = 200
+            local anchor_point = cc.p(0, 1)
+            if tag == "after" then
+                start_x = display.width - start_x
+                anchor_point.x = 1
+            end
+            local label = cc.Label:createWithSystemFont("不出", "Arial", 40)
+                :move(start_x, start_y)
+                :addTo(self)
+            self.play_poker_lists[tag] = { label }
+        else
+            local half_width = display.width / 2
+            local len = sizeof(poker_list)
+            local step_x = 20
+            local start_x = half_width
+            local label = cc.Label:createWithSystemFont("不出", "Arial", 40)
+                :move(start_x, 200)
+                :addTo(self)
+            self.play_poker_lists["my"] = { label }
+        end
+        return
+    end
+
+    if tag == "pre" or tag == "after" then
+        local start_y = 600
+        local start_x = 200
+        local anchor_point = cc.p(0, 1)
+        if tag == "after" then
+            start_x = display.width - start_x
+            anchor_point.x = 1
+        end
+        local sprite_list = {}
+        for i,id in ipairs(poker_list) do
+            local poker = POKER_SPRITE_CLASS:create({id=id})
+            poker:setPosition(cc.p(start_x,start_y - 20 * (i - 1)))
+            poker:setAnchorPoint(anchor_point)
+            self:addChild(poker)
+            table.insert(sprite_list, poker)
+        end
+        self.play_poker_lists[tag] = sprite_list
+    else
+        local half_width = display.width / 2
+        local len = sizeof(poker_list)
+        local step_x = 20
+        local start_x = half_width - len / 2 * step_x
+        local sprite_list = {}
+        for i,poker in ipairs(poker_list or {}) do
+            local poker = POKER_SPRITE_CLASS:create({id=poker})
+            poker:setPosition(cc.p(start_x + step_x * (i - 1), 200))
+            poker:setAnchorPoint(cc.p(0.5, 0))
+            self:addChild(poker)
+            table.insert(sprite_list, poker)
+        end
+        self.play_poker_lists["my"] = sprite_list
+    end
+end
+
 
 function DDZ_DESK_LAYER_CLASS:turn_index(idx)
     if self.cur_step == DDZ_STEP_LORD then
@@ -401,6 +485,7 @@ function DDZ_DESK_LAYER_CLASS:turn_index(idx)
             self.tip_tbn:setVisible(true)
         end
         self:show_count_down_tag(idx, 30)
+        self:hide_play_poker(idx)
     end
 end
 
@@ -428,10 +513,88 @@ function DDZ_DESK_LAYER_CLASS:reset_by_poker_list(poker_list)
     end
 end
 
+function DDZ_DESK_LAYER_CLASS:hide_own_poker(idx)
+    local tag = self:calc_idx_tag(idx)
+    local list = self.own_poker_lists[tag]
+    if list then
+        for _,v in ipairs(list) do
+            v:removeSelf()
+        end
+        self.own_poker_lists[tag] = {}
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:clear_own_poker()
+    for i=1,3 do
+        self:hide_own_poker(i)
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:show_own_poker(idx, poker_list, poker_num)
+    self:hide_own_poker(idx)
+    local tag = self:calc_idx_tag(idx)
+    trace("self.own_poker_lists = %o tag = %o", self.own_poker_lists, tag)
+    if not poker_list or #poker_list == 0 then
+        if tag == "pre" or tag == "after" then
+            local start_y = display.height - 100
+            local start_x = 0
+            local anchor_point = cc.p(0, 1)
+            if tag == "after" then
+                start_x = display.width - start_x
+                anchor_point.x = 1
+            end
+
+            local poker = POKER_SPRITE_CLASS:create({is_back=true, left_num = poker_num or 10})
+            poker:setAnchorPoint(anchor_point)
+            poker:setPosition(cc.p(start_x,start_y))
+            self:addChild(poker)
+
+            self.own_poker_lists[tag] = { poker }
+        end
+
+        return
+    end
+
+    if tag == "pre" or tag == "after" then
+        local start_y = display.height - 100
+        local start_x = 0
+        local anchor_point = cc.p(0, 1)
+        if tag == "after" then
+            start_x = display.width - start_x
+            anchor_point.x = 1
+        end
+        local sprite_list = {}
+        for i,id in ipairs(poker_list) do
+            local poker = POKER_SPRITE_CLASS:create({id=id})
+            poker:setPosition(cc.p(start_x,start_y - 20 * (i - 1)))
+            poker:setAnchorPoint(anchor_point)
+            self:addChild(poker)
+            table.insert(sprite_list, poker)
+        end
+        self.own_poker_lists[tag] = sprite_list
+    else
+        local half_width = display.width / 2
+        local len = sizeof(poker_list)
+        local step_x = 30
+        local start_x = half_width - len / 2 * step_x
+        local sprite_list = {}
+        for i,poker in ipairs(poker_list or {}) do
+            local poker = POKER_SPRITE_CLASS:create({id=poker})
+            poker:setPosition(cc.p(start_x + step_x * (i - 1),0))
+            poker:setAnchorPoint(cc.p(0.5, 0))
+            self:addChild(poker)
+            table.insert(sprite_list, poker)
+        end
+        self.own_poker_lists["my"] = sprite_list
+    end
+end
+
 function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
     trace("DDZ_DESK_LAYER_CLASS:room_msg_receive %o %o", oper, info)
     if oper == "poker_init" then
+        local idx_info = self:get_idx_info(info.idx)
         self:reset_by_poker_list(info.poker_list)
+        idx_info.poker_list = info.poker_list
     elseif oper == "success_user_ready" then
         if info.rid == ME_D.get_rid() then
             self.ready_btn:setVisible(false)
@@ -459,6 +622,7 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
                 end
             end
         end
+        self:show_play_poker(info.idx, info.poker_list)
     end
 end
 
@@ -469,6 +633,17 @@ end
 function DDZ_DESK_LAYER_CLASS:onEnter_()
     register_as_audience(self.uid, {EVENT_ENTER_DESK={func = self.enter_desk, args = {self} }})
     register_as_audience(self.uid, {EVENT_ROOM_MSG_RECEIVE={func = self.room_msg_receive, args = {self} }})
+
+    self:show_play_poker(1, {1, 2, 3, 4})
+    self:show_play_poker(2, {5, 6, 7, 8})
+    self:show_play_poker(3, {})
+
+    -- self:show_own_poker(4, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    self:show_own_poker(1, {}, 10)
+    self:show_own_poker(3, {}, 10)
+    self:show_own_poker(2, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    self:show_own_poker(1, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    self:show_own_poker(3, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
 end
 
 function DDZ_DESK_LAYER_CLASS:onExit_()

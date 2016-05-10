@@ -11,7 +11,15 @@ function POKER_SPRITE_CLASS:ctor(data)
     else
         self.sprite:setTexture(string.format("res/poker/poker__%02X.jpg", data.id))
     end
+    self:setContentSize(self.sprite:getContentSize())
     self.data = data
+    local size = self.sprite:getContentSize()
+    self.label = cc.Label:createWithSystemFont("", "Arial", 20):move(size.width / 2, size.height / 2):addTo(self)
+    self.label:setAnchorPoint(cc.p(0.5, 0.5))
+
+    if (self.data.left_num or 0) ~= 0 then
+        self.label:setString(tostring(self.data.left_num))
+    end
 end
 
 --被选中则上移20px
@@ -48,4 +56,9 @@ function POKER_SPRITE_CLASS:getRect()
     y = y + sprite_y
     local size = self:getContentSize()
     return cc.rect(x, y, size.width, size.height)
+end
+
+function POKER_SPRITE_CLASS:setLeftPoker(left_num)
+    self.data.left_num = left_num
+    self.label:setString(tostring(left_num))
 end
