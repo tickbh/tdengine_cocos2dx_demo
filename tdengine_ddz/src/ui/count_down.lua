@@ -5,8 +5,12 @@ end)
 function COUNT_DOWN_CLASS:ctor(data)
     self:enableNodeEvents()
     self.left_time = data.left_time or 0
-
+    local bg = display.newSprite("button/btn_kfu.png")
+        :addTo(self)
+    bg:setAnchorPoint(cc.p(0, 0))
+    self:setContentSize(bg:getContentSize())
     self.text = cc.Label:createWithSystemFont(tostring(self.left_time), "Arial", 20):addTo(self)
+    self.text:setPosition(bg:getContentSize().width / 2, bg:getContentSize().height / 2)
 end
 
 function COUNT_DOWN_CLASS:set_left_time(left_time)

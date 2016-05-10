@@ -240,6 +240,48 @@ function compare_card(first_poker_list, next_poker_list)
     return false
 end
 
+function is_contain(poker_list, sub_poker_list)
+    local find_idx = 1
+    for _,poker in ipairs(sub_poker_list) do
+        local is_find = false
+        for i=find_idx,#poker_list do
+            if poker_list[i] == poker then
+                find_idx = i + 1
+                is_find = true
+                break
+            end
+        end
+        if not is_find then
+            return false
+        end
+    end
+    return true
+end
+
+function sub_poker(poker_list, sub_poker_list)
+    if not is_contain(poker_list, sub_poker_list) then
+        return false
+    end
+    local new_poker_list = {}
+    local find_idx = 1
+    for _, poker in ipairs(poker_list) do
+        local is_find = false
+        for i=find_idx,#sub_poker_list do
+            if sub_poker_list[i] == poker then
+                find_idx = i + 1
+                is_find = true
+                break
+            end
+
+        end
+        if not is_find then
+            table.insert(new_poker_list, poker)
+        end
+    end
+
+    return true, new_poker_list
+end
+
 --Test Func
 local function test_sort()
     local card_ori = {0x0B, 0x01, 0x08, 0x02, 0x4E}
