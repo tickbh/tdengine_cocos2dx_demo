@@ -185,6 +185,32 @@ function DDZ_DESK_LAYER_CLASS:add_user_heads()
     self.user_heads["after"] = create_user_head(true, cc.p(display.width, display.height), cc.p(1, 1))
 end
 
+function DDZ_DESK_LAYER_CLASS:change_user_head(lord_idx)
+    if not lord_idx then
+        for i=1,3 do
+            local idx_info = self:get_idx_info(i)
+            local tag = self:calc_idx_tag(i)
+            if self.user_heads[tag] then
+                self.user_heads[tag]:setTexture("icon/normal_head_man.png")
+            end
+        end
+    else
+        local tag = self:calc_idx_tag(lord_idx)
+        for i=1,3 do
+            local idx_info = self:get_idx_info(i)
+            local tag = self:calc_idx_tag(i)
+            if self.user_heads[tag] then
+                if i == lord_idx then
+                    self.user_heads[tag]:setTexture("icon/dz_head_man.png")
+                else
+                    self.user_heads[tag]:setTexture("icon/normal_head_man.png")
+                end
+            end
+            
+        end
+    end
+
+end
 
 
 function DDZ_DESK_LAYER_CLASS:hide_all_ready_tip()
@@ -349,6 +375,9 @@ function DDZ_DESK_LAYER_CLASS:get_my_idx()
 end
 
 function DDZ_DESK_LAYER_CLASS:get_idx_info(idx)
+    if not self.desk_info or not self.desk_info.wheels then
+        return nil
+    end
     return self.desk_info.wheels[idx]
 end
 
@@ -378,6 +407,7 @@ function DDZ_DESK_LAYER_CLASS:recover_first_status()
     self:hide_all_btn()
     self:hide_all_count_down()
     self:hide_all_ready_tip()
+    self:change_user_head()
     self.ready_btn:setVisible(true)
 end
 
@@ -629,12 +659,20 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
             end
             self:show_down_poker(info.down_poker)
         end
+
+        if info.lord_idx > 0 then
+            self:change_user_head(info.lord_idx)
+        end
     elseif oper == "start_play" then
         for i,wheel in ipairs(info.wheels or {}) do
             self.desk_info.wheels[i] = wheel
             self:show_own_poker(i, wheel.poker_list, wheel.poker_num)    
         end
         self:show_down_poker(info.down_poker)
+        if info.lord_idx > 0 then
+            self:change_user_head(info.lord_idx)
+            self.desk_info.lord_idx = info.lord_idx
+        end
     elseif oper == "op_idx" then
         self:turn_index(info.cur_op_idx, info.poker_list)
     elseif oper == "deal_poker" then
