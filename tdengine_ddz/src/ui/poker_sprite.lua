@@ -6,13 +6,9 @@ function POKER_SPRITE_CLASS:ctor(data)
     self.sprite = display.newSprite():addTo(self)
     self.sprite:setAnchorPoint(cc.p(0, 0))
     self.is_select = false
-    if data.is_back then
-        self.sprite:setTexture("res/poker/poker__back.jpg")
-    else
-        self.sprite:setTexture(string.format("res/poker/poker__%02X.jpg", data.id))
-    end
-    self:setContentSize(self.sprite:getContentSize())
     self.data = data
+    self:set_sprite_by_data(data)
+    self:setContentSize(self.sprite:getContentSize())
     local size = self.sprite:getContentSize()
     self.label = cc.Label:createWithSystemFont("", "Arial", 20):move(size.width / 2, size.height / 2):addTo(self)
     self.label:setAnchorPoint(cc.p(0.5, 0.5))
@@ -22,12 +18,21 @@ function POKER_SPRITE_CLASS:ctor(data)
     end
 end
 
+function POKER_SPRITE_CLASS:set_sprite_by_data(info)
+    if info.is_back then
+        self.sprite:setTexture("res/poker/poker__back.jpg")
+    else
+        self.sprite:setTexture(string.format("res/poker/poker__%02X.jpg", info.id))
+    end
+    merge(self.data, info)
+end
+
 --被选中则上移20px
 function POKER_SPRITE_CLASS:set_select(is_select)
     if is_select then
-        self.sprite:setPositionY(20)
+        self:setPositionY(20)
     else
-        self.sprite:setPositionY(0)
+        self:setPositionY(0)
     end
     self.is_select = is_select
 end
@@ -47,15 +52,6 @@ end
 
 function POKER_SPRITE_CLASS:getContentSize()
     return self.sprite:getContentSize()
-end
-
-function POKER_SPRITE_CLASS:getRect()
-    local x, y = self:getPosition()
-    local sprite_x, sprite_y = self.sprite:getPosition()
-    x = x + sprite_x
-    y = y + sprite_y
-    local size = self:getContentSize()
-    return cc.rect(x, y, size.width, size.height)
 end
 
 function POKER_SPRITE_CLASS:setLeftPoker(left_num)
