@@ -14,9 +14,7 @@ int msgToTable(lua_State* L)
 		lua_pushnil(L);
 		return 2;
 	}
-	int time = TimeUtils::getServMSecond();
 	bool success = MessageDispatch::instance()->unpackBuffer(L, msg);
-	cocos2d::log("msgToTable all use time is %d", TimeUtils::getServMSecond() - time);
 	if (!success) {
 		lua_pushnil(L);
 		lua_pushnil(L);

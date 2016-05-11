@@ -324,10 +324,10 @@ function table_kv_to_array(t)
     return result
 end
 
-function table_key_to_array(t)
+function table_value_to_array(t)
     local result = {}
     for k,v in pairs(t) do
-        table.insert(result, k)
+        table.insert(result, v)
     end
     return result
 end

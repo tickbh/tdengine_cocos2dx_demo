@@ -23,7 +23,6 @@ function DDZ_DESK_LAYER_CLASS:ctor()
 end
 
 function DDZ_DESK_LAYER_CLASS:onInit()
-    print("DDZ_DESK_LAYER_CLASS init")
     display.newSprite("kuang/ddz_bg.png")
         :move(display.center)
         :addTo(self)
@@ -165,53 +164,42 @@ function DDZ_DESK_LAYER_CLASS:add_count_downs()
 end
 
 function DDZ_DESK_LAYER_CLASS:add_user_heads()
-    local function create_user_head(is_man, pos, anchor)
-        local sprite = display.newSprite()
-        if is_man then
-            sprite:setTexture("icon/normal_head_man.png")
-        else
-            sprite:setTexture("icon/normal_head_woman.png")
-        end
-        sprite:setPosition(pos)
+    local function create_user_head(is_leave, pos, anchor)
+        local head = HEAD_ICON_CLASS:create({is_leave = is_leave})
+        head:setPosition(pos)
         if anchor then
-            sprite:setAnchorPoint(anchor)
+            head:setAnchorPoint(anchor)
         end
-        sprite:setScale(0.5)
-        self:addChild(sprite)
-        return sprite
+        head:setScale(0.5)
+        self:addChild(head)
+        return head
     end
     self.user_heads["pre"] = create_user_head(true, cc.p(0, display.height), cc.p(0, 1))
     self.user_heads["my"] = create_user_head(true, cc.p(0, 200), cc.p(0, 0))
     self.user_heads["after"] = create_user_head(true, cc.p(display.width, display.height), cc.p(1, 1))
 end
 
-function DDZ_DESK_LAYER_CLASS:change_user_head(lord_idx)
-    if not lord_idx then
-        for i=1,3 do
-            local idx_info = self:get_idx_info(i)
-            local tag = self:calc_idx_tag(i)
-            if self.user_heads[tag] then
-                self.user_heads[tag]:setTexture("icon/normal_head_man.png")
-            end
-        end
-    else
-        local tag = self:calc_idx_tag(lord_idx)
-        for i=1,3 do
-            local idx_info = self:get_idx_info(i)
-            local tag = self:calc_idx_tag(i)
-            if self.user_heads[tag] then
-                if i == lord_idx then
-                    self.user_heads[tag]:setTexture("icon/dz_head_man.png")
-                else
-                    self.user_heads[tag]:setTexture("icon/normal_head_man.png")
-                end
-            end
-            
-        end
+function DDZ_DESK_LAYER_CLASS:set_head_status(idx, info)
+    local tag = self:calc_idx_tag(idx)
+    if self.user_heads[tag] then
+        self.user_heads[tag]:set_sprite_by_data(info)
     end
-
 end
 
+function DDZ_DESK_LAYER_CLASS:set_all_head_status(info, lord_idx)
+    for i=1,3 do
+        local data = dup(info)
+        if i == lord_idx then
+            data.is_lord = true
+        end
+        local idx_info = self:get_idx_info(i)
+        data.is_leave = true
+        if idx_info and idx_info.rid then
+            data.is_leave = false
+        end
+        self:set_head_status(i, data)
+    end
+end
 
 function DDZ_DESK_LAYER_CLASS:hide_all_ready_tip()
     for _,node in pairs(self.ready_tip) do
@@ -360,12 +348,10 @@ function DDZ_DESK_LAYER_CLASS:get_poker_select()
 end
 
 function DDZ_DESK_LAYER_CLASS:enter_desk()
-    trace("DDZ_DESK_LAYER_CLASS:enter_desk")
 end
 
 function DDZ_DESK_LAYER_CLASS:get_my_idx()
     self.desk_info = self.desk_info or {}
-    trace("desk_info is %o", self.desk_info)
     for idx,info in pairs(self.desk_info.wheels or {}) do
         if info.rid == ME_D.get_rid() then
             return idx
@@ -383,7 +369,6 @@ end
 
 function DDZ_DESK_LAYER_CLASS:get_my_poker_list()
     self.desk_info = self.desk_info or {}
-    trace("desk_info is %o", self.desk_info)
     for idx,info in pairs(self.desk_info.wheels or {}) do
         if info.rid == ME_D.get_rid() then
             return info.poker_list
@@ -407,7 +392,7 @@ function DDZ_DESK_LAYER_CLASS:recover_first_status()
     self:hide_all_btn()
     self:hide_all_count_down()
     self:hide_all_ready_tip()
-    self:change_user_head()
+    self:set_all_head_status({is_in_lord = false})
     self.ready_btn:setVisible(true)
 end
 
@@ -435,12 +420,15 @@ function DDZ_DESK_LAYER_CLASS:show_count_down_tag(idx, left_time)
     end
 end
 
-function DDZ_DESK_LAYER_CLASS:show_ready_status(idx)
+function DDZ_DESK_LAYER_CLASS:show_ready_status(idx, is_leave)
     local tag = self:calc_idx_tag(idx)
-    trace("DDZ_DESK_LAYER_CLASS:show_ready_status tag = %o", tag)
     local ready_tip = self.ready_tip[tag]
     if ready_tip then
-        ready_tip:show()
+        if is_leave then
+            ready_tip:hide()
+        else
+            ready_tip:show()
+        end
     end
 end
 
@@ -636,7 +624,6 @@ function DDZ_DESK_LAYER_CLASS:show_own_poker(idx, poker_list, poker_num)
 end
 
 function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
-    trace("DDZ_DESK_LAYER_CLASS:room_msg_receive %o %o", oper, info)
     if oper == "poker_init" then
         local idx_info = self:get_idx_info(self:get_my_idx())
         self:show_own_poker(self:get_my_idx(), info.poker_list)
@@ -648,6 +635,19 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         self:show_ready_status(info.idx)
     elseif oper == "step_change" then
         self:turn_step(info.cur_step)
+    elseif oper == "success_enter_desk" then
+        self.desk_info.wheels = self.desk_info.wheels or {}
+        self.desk_info.wheels[info.wheel_idx] = info
+        trace("success_enter_desk info is %o", info)
+        self:set_head_status(info.wheel_idx, {is_leave = false})
+        --TODO set user info
+    elseif oper == "success_leave_desk" then
+        self.desk_info.wheels = self.desk_info.wheels or {}
+        self.desk_info.wheels[info.wheel_idx] = {}
+
+        self:show_ready_status(info.wheel_idx, true)
+        self:set_head_status(info.wheel_idx, {is_leave = true})
+        --TODO reset user info
     elseif oper == "desk_info" then
         self.desk_info = info
         self:turn_step(info.cur_step or DDZ_STEP_NONE)
@@ -661,7 +661,9 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         end
 
         if info.lord_idx > 0 then
-            self:change_user_head(info.lord_idx)
+            self:set_all_head_status({is_in_lord = true}, info.lord_idx)
+        else
+            self:set_all_head_status({is_in_lord = false})
         end
     elseif oper == "start_play" then
         for i,wheel in ipairs(info.wheels or {}) do
@@ -670,7 +672,7 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         end
         self:show_down_poker(info.down_poker)
         if info.lord_idx > 0 then
-            self:change_user_head(info.lord_idx)
+            self:set_all_head_status({is_in_lord = true}, info.lord_idx)
             self.desk_info.lord_idx = info.lord_idx
         end
     elseif oper == "op_idx" then

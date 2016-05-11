@@ -37,7 +37,7 @@ end
 -- 玩家进入世界
 function PLAYER_TDCLS:enter_world()
     self:set_temp("entered_world", true)
-    trace("玩家(%o/%s)进入游戏世界。", self:query("name"), get_ob_rid(self));
+    trace("玩家(%s/%s)进入游戏世界。", self:query("name"), get_ob_rid(self));
     trace("玩家等级: %d\r\n玩家金币: %d\r\n玩家钻石: %d", self:query("lv"), self:query("gold"), self:query("stone"))
 end
 

@@ -16,7 +16,6 @@ function MAIN_SCENE_CLASS:onInit()
 end
 
 function MAIN_SCENE_CLASS:openMainLayer()
-    trace("EVENT_ENTER_GAME!!!")
     self:removeAllChildren()
     local layer = MAIN_LAYER_CLASS:create()
     self:addChild(layer)

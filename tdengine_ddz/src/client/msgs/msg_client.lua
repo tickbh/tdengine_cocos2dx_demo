@@ -1,6 +1,5 @@
 
 function msg_login_notify_status( agent, info )
-    trace("msg_login_notify_status!!!!!!!!!!!!")
     if info.ret and info.ret ~= 0 then
         trace("登陆时发生错误:%s", info.err_msg)
     end
@@ -76,12 +75,11 @@ function msg_chat( user, channel, info )
 end
 
 function msg_room_message(user, oper, info)
-    trace("user = %o, oper = %o, info = %o", user, oper, info)
     if oper == "success_enter_room" then
         trace("成功进入房间:\"%s\"", info.room_name)
         raise_issue(EVENT_ENTER_ROOM, user)
     elseif oper == "success_enter_desk" then
-        trace("%s成功进入桌子:\"%d\", 在位置:%d", info.rid, info.idx, info.wheel_idx)
+        trace("%s成功进入桌子:%d, 在位置:%d", info.rid, info.idx, info.wheel_idx)
         if ME_D.get_rid() == info.rid then
             raise_issue(EVENT_ENTER_DESK, user)
         else
@@ -105,8 +103,6 @@ function msg_enter_room(user, info)
         trace("进入房间错误:\"%s\"", info.err_msg)
         return
     end
-    trace("msg_enter_room info = %o", info)
-    trace("成功进入房间:\"%s\"", info.room_name)
 end
 
 function msg_leave_room(user, info)    
@@ -114,6 +110,11 @@ function msg_leave_room(user, info)
         trace("离开房间错误:\"%s\"", info.err_msg)
         return
     end
-    trace("msg_leave_room info = %o", info)
     trace("成功离开房间:\"%s\"", info.room_name)
+end
+
+function msg_room_oper(user, oper, info)
+    if oper == "detail_room" then
+        raise_issue(EVENT_ROOM_DETAIL, info)
+    end
 end

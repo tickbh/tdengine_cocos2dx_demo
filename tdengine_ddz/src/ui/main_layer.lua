@@ -5,13 +5,11 @@ end)
 
 function MAIN_LAYER_CLASS:ctor()
     self:enableNodeEvents()
-    self.gameAllSize = 0
-    self.gameCurSize = 0
+    self.uid = new_cookie()
     self:onInit()
 end
 
 function MAIN_LAYER_CLASS:onInit()
-    print("MAIN_LAYER_CLASS init")
     display.newSprite("HelloWorld.png")
         :move(display.center)
         :addTo(self)
@@ -21,17 +19,8 @@ function MAIN_LAYER_CLASS:onInit()
         :addTo(self)
 
     local function touchEvent(sender,eventType)
-
-        if eventType == ccui.TouchEventType.began then
-
-            print("Touch Down")
-        elseif eventType == ccui.TouchEventType.moved then
-            print("Touch Move")
-        elseif eventType == ccui.TouchEventType.ended then
+        if eventType == ccui.TouchEventType.ended then
             ME_D.request_message(CMD_ENTER_ROOM, {room_name = "ddz1"})
-            print("Touch Up")
-        elseif eventType == ccui.TouchEventType.canceled then
-            print("Touch Cancelled")
         end
     end
 
@@ -48,4 +37,21 @@ end
 
 function MAIN_LAYER_CLASS:onCleanup_()
 
+end
+
+function MAIN_LAYER_CLASS:room_detail(detail)
+    detail.map_list = detail.map_list or {}
+    trace("收到房间具体信息一共有%d房间", #detail.map_list)
+    for i,v in ipairs(detail.map_list) do
+        trace("房间:%d，名字:%s，类型为:%s，一共有%d人在此房间", i, v.room_name, v.game_type, v.amount)
+    end
+end
+
+function MAIN_LAYER_CLASS:onEnter_()
+    register_as_audience(self.uid, {EVENT_ROOM_DETAIL={func = self.room_detail, args = {self} }})
+    ME_D.request_message(CMD_ROOM_OPER, "detail_room", {})
+end
+
+function MAIN_LAYER_CLASS:onExit_()
+    remove_audience_from_raiser(self.uid)
 end

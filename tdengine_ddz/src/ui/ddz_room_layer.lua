@@ -10,7 +10,6 @@ function DDZ_ROOM_LAYER_CLASS:ctor()
 end
 
 function DDZ_ROOM_LAYER_CLASS:onInit()
-    print("DDZ_ROOM_LAYER_CLASS init")
     display.newSprite("HelloWorld.png")
         :move(display.center)
         :addTo(self)
@@ -20,17 +19,8 @@ function DDZ_ROOM_LAYER_CLASS:onInit()
         :addTo(self)
 
     local function touchEvent(sender,eventType)
-
-        if eventType == ccui.TouchEventType.began then
-
-            print("Touch Down")
-        elseif eventType == ccui.TouchEventType.moved then
-            print("Touch Move")
-        elseif eventType == ccui.TouchEventType.ended then
+        if eventType == ccui.TouchEventType.ended then
             ME_D.request_message(CMD_ROOM_MESSAGE, "enter_desk", {})
-            print("Touch Up")
-        elseif eventType == ccui.TouchEventType.canceled then
-            print("Touch Cancelled")
         end
     end
 
