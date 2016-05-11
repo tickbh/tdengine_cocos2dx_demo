@@ -91,6 +91,22 @@ bool AppDelegate::applicationDidFinishLaunching()
     LuaStack* stack = engine->getLuaStack();
 	stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
 
+#ifdef WIN32
+	std::string result = "";
+	WCHAR buf[1000 + 1];
+	int i = 1000;
+	GetCurrentDirectory(1000, buf);  //得到当前工作路径
+	cocos2d::StringUtils::UTF16ToUTF8((char16_t*)buf, result);
+	result = result + "/../../";
+	cocos2d::log("add path is %s", result.c_str());
+	FileUtils::getInstance()->addSearchPath(result);
+	FileUtils::getInstance()->addSearchPath(result + "/src");
+	FileUtils::getInstance()->addSearchPath(result + "/res");
+
+	for (auto path : cocos2d::FileUtils::getInstance()->getSearchPaths()) {
+		cocos2d::log("search paths is %s", path.c_str());
+	}
+#endif
 	{
 		Data data = FileUtils::getInstance()->getDataFromFile("src/config/GlobalConfig.conf");
 		ConfigMgr::instance()->initGlobalConfig((const char*)data.getBytes(), data.getSize());
@@ -110,7 +126,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	Director::getInstance()->getScheduler()->schedule(std::bind(&AppDelegate::onUpdate, this, 0.1f), (void *)this, 0.1f, false, "onUpdate");
 
-	FileUtils::getInstance()->addSearchPath("../../");
 
     //register custom function
     //LuaStack* stack = engine->getLuaStack();

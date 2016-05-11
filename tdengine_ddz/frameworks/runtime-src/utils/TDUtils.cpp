@@ -109,12 +109,11 @@ std::string TDUtils::fullPathForFilename(const std::string& filename)
 	if (find_path.size() > 0) {
 		return find_path;
 	}
-	for (auto path : cocos2d::FileUtils::getInstance()->getSearchPaths()) {
-		auto new_path = path + "/" + filename;
-		if (cocos2d::FileUtils::getInstance()->isDirectoryExist(new_path)) {
-			return new_path;
-		}
+	//2dx 须判断目录是否存在，存在则会添加到缓存，此时才能用fullPath
+	if (cocos2d::FileUtils::getInstance()->isDirectoryExist(filename)) {
+		return cocos2d::FileUtils::getInstance()->fullPathForFilename(filename);
 	}
+
 	return "";
 }
 
