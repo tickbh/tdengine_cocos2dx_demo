@@ -6,11 +6,12 @@ end)
 function MAIN_SCENE_CLASS:ctor()
     self:enableNodeEvents()
     self.uid = new_cookie()
-    self:onInit()
+    self:openLoginLayer()
 
 end
 
-function MAIN_SCENE_CLASS:onInit()
+function MAIN_SCENE_CLASS:openLoginLayer()
+    self:removeAllChildren()
     local layer = LOGIN_LAYER_CLASS:create()
     self:addChild(layer)
 end
@@ -41,6 +42,8 @@ function MAIN_SCENE_CLASS:onEnter_()
     register_as_audience(self.uid, {EVENT_ENTER_GAME={func = self.openMainLayer, args = {self} }})
     register_as_audience(self.uid, {EVENT_ENTER_ROOM={func = self.openDdzRoomLayer, args = {self} }})
     register_as_audience(self.uid, {EVENT_ENTER_DESK={func = self.openDdzDeskLayer, args = {self} }})
+    register_as_audience(self.uid, {EVENT_CONNECTION_LOST={func = self.openLoginLayer, args = {self} }})
+
 end
 
 function MAIN_SCENE_CLASS:onExit_()

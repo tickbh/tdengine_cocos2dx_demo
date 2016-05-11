@@ -70,6 +70,7 @@ function cmd_connection_lost(port_no)
         -- 不存在对应的 agent，不处理
         do return end
     end
+    raise_issue(EVENT_CONNECTION_LOST, agent)
     -- 通知 agent 连接断开
     agent:connection_lost()
 end
