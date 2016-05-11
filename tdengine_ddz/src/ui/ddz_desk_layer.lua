@@ -47,12 +47,20 @@ function DDZ_DESK_LAYER_CLASS:onInit()
     self:set_lord_type(false)
 end
 
+function DDZ_DESK_LAYER_CLASS:double_click()
+    self:unselect_all_poker()
+end
+
 function DDZ_DESK_LAYER_CLASS:add_listener()
     -- handing touch events
-    self.touchBeginPoint = nil
+    self.touch_begin_point = nil
     local function onTouchBegan(touch, event)
         local location = touch:getLocation()
-        self.touchBeginPoint = {x = location.x, y = location.y}
+        self.touch_begin_point = {x = location.x, y = location.y}
+        if not self.touch_begin_time or (get_msec() - self.touch_begin_time > 300) then
+            self.touch_begin_time = get_msec()
+            self.is_first_touch = true
+        end
         return true
     end
 
@@ -61,23 +69,25 @@ function DDZ_DESK_LAYER_CLASS:add_listener()
     end
 
     local function onTouchEnded(touch, event)
-        if not self.touchBeginPoint then
+        if not self.touch_begin_point then
             return
         end
         if not self.own_poker_lists["my"] then
             return
         end
         local location = touch:getLocation()
-        local touchRect = cc.rect(math.min(self.touchBeginPoint.x, location.x), math.min(self.touchBeginPoint.y, location.y),
-            math.abs(self.touchBeginPoint.x - location.x), math.abs(self.touchBeginPoint.y - location.y))
+        local touchRect = cc.rect(math.min(self.touch_begin_point.x, location.x), math.min(self.touch_begin_point.y, location.y),
+            math.abs(self.touch_begin_point.x - location.x), math.abs(self.touch_begin_point.y - location.y))
         local is_move = touchRect.width > 30
         local pre_inter_rect = nil
+        local is_oper = false
         for i=#self.own_poker_lists["my"],1,-1 do
             local poker = self.own_poker_lists["my"][i]
             local rect = cc.rectIntersection(touchRect, get_node_rect(poker))
             if rect.width >= 0 and rect.height >= 0 then
                 if not pre_inter_rect or not is_rect_contains_rect(pre_inter_rect, rect) then
                     poker:reverse_select()
+                    is_oper = true
                 end
                 if not is_move then
                     break
@@ -85,7 +95,17 @@ function DDZ_DESK_LAYER_CLASS:add_listener()
                 pre_inter_rect = rect
             end
         end
-        self.touchBeginPoint = nil
+        self.touch_begin_point = nil
+        if is_oper then
+            self.touch_begin_time = nil
+        elseif not self.is_first_touch and self.touch_begin_time then
+            --小于300毫秒当做双击处理
+            if get_msec() - self.touch_begin_time < 300 then
+                self:double_click()
+            end
+            self.touch_begin_time = nil
+        end
+        self.is_first_touch = false
     end
 
     local listener = cc.EventListenerTouchOneByOne:create()
@@ -129,7 +149,6 @@ function DDZ_DESK_LAYER_CLASS:add_down_poker_list()
 end
 
 function DDZ_DESK_LAYER_CLASS:show_down_poker(list)
-    trace("show_down_poker %o", list)
     if not list or #list < 3 then
         for i=1,3 do
             self.down_poker_list[i]:set_sprite_by_data({is_back = true})
@@ -347,6 +366,12 @@ function DDZ_DESK_LAYER_CLASS:get_poker_select()
     return select_ids
 end
 
+function DDZ_DESK_LAYER_CLASS:unselect_all_poker()
+    for _,poker in ipairs(self.own_poker_lists["my"] or {}) do
+        poker:set_select(false)
+    end
+end
+
 function DDZ_DESK_LAYER_CLASS:enter_desk()
 end
 
@@ -412,7 +437,6 @@ end
 function DDZ_DESK_LAYER_CLASS:show_count_down_tag(idx, left_time)
     self:hide_all_count_down()
     local tag = self:calc_idx_tag(idx)
-    trace("DDZ_DESK_LAYER_CLASS:show_count_down_tag tag = %o idx = %o, count_downs = %o", tag, idx, self.count_downs)
     local count_down = self.count_downs[tag]
     if count_down then
         count_down:set_left_time(left_time)
@@ -567,7 +591,6 @@ end
 function DDZ_DESK_LAYER_CLASS:show_own_poker(idx, poker_list, poker_num)
     self:hide_own_poker(idx)
     local tag = self:calc_idx_tag(idx)
-    trace("self.own_poker_lists = %o tag = %o", self.own_poker_lists, tag)
     if not poker_list or #poker_list == 0 then
         if tag == "pre" or tag == "after" then
             local start_y = display.height - 100
@@ -638,7 +661,6 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
     elseif oper == "success_enter_desk" then
         self.desk_info.wheels = self.desk_info.wheels or {}
         self.desk_info.wheels[info.wheel_idx] = info
-        trace("success_enter_desk info is %o", info)
         self:set_head_status(info.wheel_idx, {is_leave = false})
         --TODO set user info
     elseif oper == "success_leave_desk" then

@@ -20,7 +20,6 @@ end
 
 function HEAD_ICON_CLASS:set_sprite_by_data(data)
     merge(self.data, data)
-    trace("self.data = %o", data)
     --是否为地主确定阶段
     local sprite_path = ""
     if self.data.is_in_lord then
