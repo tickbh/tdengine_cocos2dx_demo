@@ -710,6 +710,11 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
                 self:show_own_poker(i, wheel.poker_list, wheel.poker_num)    
             end
             self:show_down_poker(info.down_poker)
+        else
+            for i=1,3 do
+                local wheel = self.desk_info.wheels[i]
+                self:show_ready_status(i, wheel.is_ready ~= 1)
+            end
         end
 
         if info.lord_idx > 0 then
