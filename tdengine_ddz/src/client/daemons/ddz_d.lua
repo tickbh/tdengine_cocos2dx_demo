@@ -59,7 +59,6 @@ function get_new_game_poker()
         table.sort(user_pokers[i], sort_card)
     end
     table.sort(down_poker, sort_card)
-    trace("user_pokers = %o, down_poker = %o", user_pokers, down_poker)
     return user_pokers, down_poker
 end
 
@@ -470,7 +469,7 @@ local function calc_tip_poker(poker_list, pre_poker_list)
 
     local function check_three_line()
         local pre_single_line_num = #pre_result.three_list
-        local single_line_start = pre_result.three_list[#pre_result.three_list]
+        local single_line_start = get_card_logic_value(pre_result.three_list[#pre_result.three_list])
         for i=#poker_list,1,-1 do
             local cur_logic_value = get_card_logic_value(poker_list[i])
             if cur_logic_value > single_line_start and cur_logic_value < 15 then
@@ -540,7 +539,7 @@ local function calc_tip_poker(poker_list, pre_poker_list)
         return out_list
     elseif card_type == TYPE_SINGLE_LINE then
         local pre_single_line_num = #pre_poker_list
-        local single_line_start = pre_poker_list[#pre_poker_list]
+        local single_line_start = get_card_logic_value(pre_poker_list[#pre_poker_list])
         for i=#poker_list,1,-1 do
             local cur_logic_value = get_card_logic_value(poker_list[i])
             if cur_logic_value > single_line_start and cur_logic_value < 15 then
@@ -564,7 +563,7 @@ local function calc_tip_poker(poker_list, pre_poker_list)
         return out_list
     elseif card_type == TYPE_DOUBLE_LINE then
         local pre_single_line_num = #pre_poker_list
-        local single_line_start = pre_poker_list[#pre_poker_list]
+        local single_line_start = get_card_logic_value(pre_poker_list[#pre_poker_list])
         for i=#poker_list,1,-1 do
             local cur_logic_value = get_card_logic_value(poker_list[i])
             if cur_logic_value > single_line_start and cur_logic_value < 15 then
