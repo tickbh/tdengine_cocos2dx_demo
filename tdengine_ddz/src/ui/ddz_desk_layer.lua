@@ -18,6 +18,10 @@ function DDZ_DESK_LAYER_CLASS:ctor()
 
     self.last_poker_list = nil
 
+    self.pre_poker_list = {}
+
+    self.reclick_tip_poker_list = {}
+
     self.ready_tip = {}
     self:onInit()
 end
@@ -341,7 +345,22 @@ end
 function DDZ_DESK_LAYER_CLASS:add_tip_tbn()
     local function touchEvent(sender,eventType)
         if eventType == ccui.TouchEventType.ended then
-            ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "round", is_choose = 0})
+            local my_poker_list = self:get_my_poker_list()
+            if #self.reclick_tip_poker_list ~= 0 then
+                local can_out_poker = DDZ_D.sort_calc_tip_poker(my_poker_list, self.reclick_tip_poker_list)
+                if #can_out_poker ~= 0 then
+                    self.reclick_tip_poker_list = can_out_poker
+                    self:select_poker_by_list(can_out_poker)
+                    return
+                end
+                self.reclick_tip_poker_list = {}
+            end
+            local can_out_poker = DDZ_D.sort_calc_tip_poker(my_poker_list, self.pre_poker_list)
+            if #can_out_poker == 0 then
+                ME_D.request_message(CMD_ROOM_MESSAGE, "desk_op", {oper = "deal_poker", is_play = 0})
+            end
+            self:select_poker_by_list(can_out_poker)
+            self.reclick_tip_poker_list = can_out_poker
         end
     end
 
@@ -369,6 +388,16 @@ end
 function DDZ_DESK_LAYER_CLASS:unselect_all_poker()
     for _,poker in ipairs(self.own_poker_lists["my"] or {}) do
         poker:set_select(false)
+    end
+end
+
+function DDZ_DESK_LAYER_CLASS:select_poker_by_list(poker_list)
+    self:unselect_all_poker()
+    local poker_table = array_to_table(poker_list)
+    for _,poker in ipairs(self.own_poker_lists["my"] or {}) do
+        if poker_table[poker:get_data_id() or 0] then
+            poker:set_select(true)
+        end
     end
 end
 
@@ -588,6 +617,7 @@ function DDZ_DESK_LAYER_CLASS:clear_own_poker()
     end
 end
 
+
 function DDZ_DESK_LAYER_CLASS:show_own_poker(idx, poker_list, poker_num)
     self:hide_own_poker(idx)
     local tag = self:calc_idx_tag(idx)
@@ -713,8 +743,12 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
                     self:show_own_poker(info.idx, new_poker_list)
                 end
             end
+            self.pre_poker_list = info.poker_list
         end
+        self.reclick_tip_poker_list = {}
         self:show_play_poker(info.idx, info.poker_list)
+    elseif oper == "next_round" then
+        self.pre_poker_list = {}
     end
 end
 
