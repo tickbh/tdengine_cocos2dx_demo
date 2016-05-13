@@ -6,6 +6,7 @@ end)
 function DDZ_DESK_LAYER_CLASS:ctor()
     self:enableNodeEvents()
     self.uid = new_cookie()
+    self.desk_info = {}
     self.count_downs = {}
     self.user_heads = {}
     --出牌的列表
@@ -215,11 +216,16 @@ function DDZ_DESK_LAYER_CLASS:set_all_head_status(info, lord_idx)
         if i == lord_idx then
             data.is_lord = true
         end
-        local idx_info = self:get_idx_info(i)
+        local idx_info = self:get_detail_idx_info(i)
         data.is_leave = true
-        if idx_info and idx_info.rid then
-            data.is_leave = false
+        if idx_info then
+            if idx_info.rid then
+                data.is_leave = false
+            end
+            
+            data.is_man = idx_info.sex == 0
         end
+
         self:set_head_status(i, data)
     end
 end
@@ -412,6 +418,13 @@ function DDZ_DESK_LAYER_CLASS:get_my_idx()
         end
     end
     return -1
+end
+
+function DDZ_DESK_LAYER_CLASS:get_detail_idx_info(idx)
+    if not self.desk_info or not self.desk_info.details then
+        return nil
+    end
+    return self.desk_info.details[idx]
 end
 
 function DDZ_DESK_LAYER_CLASS:get_idx_info(idx)
@@ -689,11 +702,14 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
     elseif oper == "step_change" then
         self:turn_step(info.cur_step)
     elseif oper == "success_enter_desk" then
-        self.desk_info.wheels = self.desk_info.wheels or {}
-        self.desk_info.wheels[info.wheel_idx] = info
+        self.desk_info.details = self.desk_info.details or {}
+        self.desk_info.details[info.wheel_idx] = info
         self:set_head_status(info.wheel_idx, {is_leave = false})
         --TODO set user info
     elseif oper == "success_leave_desk" then
+        self.desk_info.details = self.desk_info.details or {}
+        self.desk_info.details[info.wheel_idx] = {}
+
         self.desk_info.wheels = self.desk_info.wheels or {}
         self.desk_info.wheels[info.wheel_idx] = {}
 
@@ -701,7 +717,7 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         self:set_head_status(info.wheel_idx, {is_leave = true})
         --TODO reset user info
     elseif oper == "desk_info" then
-        self.desk_info = info
+        self.desk_info = merge(self.desk_info or {}, info)
         self:turn_step(info.cur_step or DDZ_STEP_NONE)
         self:turn_index(info.cur_op_idx or -1)
         if info.cur_step ~= DDZ_STEP_NONE then
