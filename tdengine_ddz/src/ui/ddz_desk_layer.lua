@@ -56,11 +56,37 @@ function DDZ_DESK_LAYER_CLASS:double_click()
     self:unselect_all_poker()
 end
 
+function DDZ_DESK_LAYER_CLASS:show_role_detail(idx)
+    local detail = self:get_detail_idx_info(idx)
+    if not detail then
+        return
+    end
+    if self:getChildByName("detail_layer") then
+        self:getChildByName("detail_layer"):removeSelf()
+    end
+    local size = self:getContentSize()
+    local detail_layer = USER_DETEAIL_INFO_CLASS:create(detail)
+    trace("detail_layer size is %o", detail_layer:getContentSize())
+    detail_layer:setAnchorPoint(cc.p(0.5, 0.5))
+    detail_layer:setPosition(cc.p(size.width / 2, size.height / 2))
+    self:addChild(detail_layer, 0, "detail_layer")
+end
+
 function DDZ_DESK_LAYER_CLASS:add_listener()
     -- handing touch events
     self.touch_begin_point = nil
     local function onTouchBegan(touch, event)
         local location = touch:getLocation()
+
+        for i=1,3 do
+            local tag = self:calc_idx_tag(i)
+            local head = self.user_heads[tag]
+            if head and cc.rectContainsPoint(head:getBoundingBox(), location) then
+                self:show_role_detail(i)
+                return false
+            end
+        end
+
         self.touch_begin_point = {x = location.x, y = location.y}
         if not self.touch_begin_time or (get_msec() - self.touch_begin_time > 300) then
             self.touch_begin_time = get_msec()

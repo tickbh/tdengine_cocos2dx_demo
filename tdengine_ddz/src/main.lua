@@ -42,8 +42,8 @@ local function main()
 
     load_folder("ui")
 
-    send_debug_on(0)
-    debug_on(0)
+    send_debug_on(1)
+    debug_on(1)
 
     post_init()
     local  login_scene = MAIN_SCENE_CLASS:create()
