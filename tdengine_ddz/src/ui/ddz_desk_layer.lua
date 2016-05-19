@@ -72,6 +72,20 @@ function DDZ_DESK_LAYER_CLASS:show_role_detail(idx)
     self:addChild(detail_layer, 0, "detail_layer")
 end
 
+function DDZ_DESK_LAYER_CLASS:show_final_info(idx)
+
+    if self:getChildByName("final_layer") then
+        self:getChildByName("final_layer"):removeSelf()
+    end
+    local size = self:getContentSize()
+    local final_layer = DDZ_FINAL_LAYER_CLASS:create(idx == self:get_my_idx())
+    trace("final_layer size is %o", final_layer:getContentSize())
+    final_layer:setAnchorPoint(cc.p(0.5, 0.5))
+    final_layer:setPosition(cc.p(size.width / 2, size.height / 2))
+    self:addChild(final_layer, 0, "final_layer")
+end
+
+
 function DDZ_DESK_LAYER_CLASS:add_listener()
     -- handing touch events
     self.touch_begin_point = nil
@@ -729,7 +743,7 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         self:turn_step(info.cur_step)
     elseif oper == "success_enter_desk" then
         self.desk_info.details = self.desk_info.details or {}
-        self.desk_info.details[info.wheel_idx] = info
+        self.desk_info.details[info.wheel_idx] = info.info
         self:set_head_status(info.wheel_idx, {is_leave = false})
         --TODO set user info
     elseif oper == "success_leave_desk" then
@@ -796,6 +810,8 @@ function DDZ_DESK_LAYER_CLASS:room_msg_receive(user, oper, info)
         self:show_play_poker(info.idx, info.poker_list)
     elseif oper == "next_round" then
         self.pre_poker_list = {}
+    elseif oper == "team_win" then
+        self:show_final_info(info.idx)
     end
 end
 
