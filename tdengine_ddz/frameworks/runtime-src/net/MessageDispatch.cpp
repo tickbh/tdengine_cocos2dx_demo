@@ -1,6 +1,7 @@
 #include "MessageDispatch.h"
 #include "NetConfig.h"
 #include "lua/LuaRegister.h"
+#include "cocos2d.h"
 
 #if	( LUA_VERSION_NUM < 502 )
 #define  lua_rawlen lua_objlen
@@ -27,7 +28,8 @@ bool MessageDispatch::unpackBuffer( lua_State* lua, NetMsg* input)
 	input->readHead();
 	auto msgName = input->getPackName();
 	input->rpos(MIN_LENGTH);
-	auto unpackValue = td_proto::decode_proto(*input, NetConfig::instance()->getConfig());
+	std::vector<td_proto::Values> unpackValue;
+	auto unpackName = td_proto::decode_proto(*input, NetConfig::instance()->getConfig(), unpackValue);
 	if (!input->isVaild()) {
 		lua_pushnil(lua);
 		return false;
@@ -35,14 +37,12 @@ bool MessageDispatch::unpackBuffer( lua_State* lua, NetMsg* input)
 	lua_pushstring(lua, msgName.c_str());
 	lua_newtable(lua);
 	int idx = 1;
-	//std::vector<td_proto::Values> array_value;
-	//std::tie(std::ignore, array_value) = std::move(unpackValue);
-	for (auto& iter : std::get<1>(unpackValue)) {
+	for (auto& iter : unpackValue) {
 		lua_pushnumber(lua, idx++);
 		LuaRegister::pushValues(lua, iter);
 		lua_settable(lua, -3);
-
 	}
+
 	return true;
 }
 

@@ -12,6 +12,7 @@ require "cocos.init"
 function update(name)
     name = string.gsub(name, ".lua", "") .. ".lua"
     local full_name = get_full_path(name)
+    print("load file " .. full_name)
     package.loaded[full_name] = false
     require(full_name)
     -- 回收垃圾
@@ -19,28 +20,80 @@ function update(name)
 end
 
 g_scene = nil
+
 update("global/base/util")
-
-local function main()
+local function load_base()
+    update("global/base/class")
+    update("global/base/global_boot")
+    update("global/base/global_frame")
+    update("global/base/raiser")
+    update("global/base/game_util")
+    update("global/base/global_comm")
+    update("global/base/heartbeat")
+    update("global/base/rid")
+    update("global/base/global_agents")
+    update("global/base/global_cookie")
     update("global/base/load_folder")
-    load_folder("global/include")
-    load_folder("global/base")
-    load_folder("global/inherit")
-    load_folder("global/clone")
-    load_folder("global/daemons")
+    update("global/base/string_util")
+    update("global/base/global_basic")
+    update("global/base/global_data_boot")
+    update("global/base/log")
+end
 
-    load_folder("share")
+local function load_files()
+    load_base()
+    update("global/include/define")
 
+    update("global/inherit/agent")
+    update("global/inherit/attrib")
+    update("global/inherit/dbase")
+    update("global/inherit/heartbeat")
+    update("global/inherit/property")
+    update("global/inherit/rid")
+
+
+    update("global/clone/equip")
+    update("global/clone/item")
+    update("global/clone/queue")
+
+    update("global/daemons/base64d")
+    update("global/daemons/forbidden_wordd")
+    update("global/daemons/importd")
+    update("global/daemons/memoryd")
+    update("global/daemons/propertyd")
+
+    update("share/net")
     update("etc/format")
-    load_folder("client/include")
-    load_folder("client/global","md5")
-    load_folder("client/clone")
-    load_folder("client/msgs")
+
+
+    update("client/include/define")
+
+    update("client/global/md5")
+    update("client/global/client_util")
+    update("client/global/funcitons")
+
+
+    update("client/clone/player")
+    update("client/msgs/msg_client")
+
     update("client/daemons/logind")
     update("client/daemons/med")
     update("client/daemons/ddz_d")
 
-    load_folder("ui")
+    update("ui/count_down")
+    update("ui/ddz_desk_layer")
+    update("ui/ddz_final_layer")
+    update("ui/ddz_room_layer")
+    update("ui/head_icon")
+    update("ui/login_layer")
+    update("ui/main_layer")
+    update("ui/main_scene")
+    update("ui/poker_sprite")
+    update("ui/user_detail_info")
+end
+
+local function main()
+    load_files()
 
     send_debug_on(1)
     debug_on(1)
