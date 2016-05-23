@@ -35,7 +35,9 @@ bool MessageDispatch::unpackBuffer( lua_State* lua, NetMsg* input)
 	lua_pushstring(lua, msgName.c_str());
 	lua_newtable(lua);
 	int idx = 1;
-	for (auto iter : std::get<1>(unpackValue)) {
+	//std::vector<td_proto::Values> array_value;
+	//std::tie(std::ignore, array_value) = std::move(unpackValue);
+	for (auto& iter : std::get<1>(unpackValue)) {
 		lua_pushnumber(lua, idx++);
 		LuaRegister::pushValues(lua, iter);
 		lua_settable(lua, -3);

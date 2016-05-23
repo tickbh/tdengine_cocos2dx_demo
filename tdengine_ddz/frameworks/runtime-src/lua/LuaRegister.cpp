@@ -75,7 +75,7 @@ void LuaRegister::pushValues(lua_State* L, td_proto::Values& val)
 		break;
 	case td_proto::TYPE_MAP:
 		lua_newtable(L);
-		for (auto iter : *val._map) {
+		for (auto& iter : *val._map) {
 			lua_pushstring(L, iter.first.c_str());
 			LuaRegister::pushValues(L, iter.second);
 			lua_settable(L, -3);
@@ -92,7 +92,7 @@ void LuaRegister::pushValues(lua_State* L, td_proto::Values& val)
 	case td_proto::TYPE_AMAP: {
 		lua_newtable(L);
 		int i = 1;
-		for (auto iter : *val._array) {
+		for (auto& iter : *val._array) {
 			lua_pushnumber(L, i++);
 			LuaRegister::pushValues(L, iter);
 			lua_settable(L, -3);

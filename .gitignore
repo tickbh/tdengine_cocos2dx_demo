@@ -17,3 +17,4 @@ Debug.win32
 *.sdf
 *.suo
 /tdengine_ddz/frameworks/runtime-src/proj.win32/Debug/td_proto_cpp.exe
+/tdengine_ddz/frameworks/runtime-src/proj.android/obj/
