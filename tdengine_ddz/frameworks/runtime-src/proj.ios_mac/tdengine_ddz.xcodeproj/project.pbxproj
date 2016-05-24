@@ -7,6 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DAC4BEE1CF3E6E100304CD1 /* LuaNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BC71CF3E6E000304CD1 /* LuaNetwork.cpp */; };
+		0DAC4BEF1CF3E6E100304CD1 /* LuaNetwork.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BC71CF3E6E000304CD1 /* LuaNetwork.cpp */; };
+		0DAC4BF01CF3E6E100304CD1 /* LuaRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BC91CF3E6E000304CD1 /* LuaRegister.cpp */; };
+		0DAC4BF11CF3E6E100304CD1 /* LuaRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BC91CF3E6E000304CD1 /* LuaRegister.cpp */; };
+		0DAC4BF21CF3E6E100304CD1 /* LuaTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BCB1CF3E6E000304CD1 /* LuaTimer.cpp */; };
+		0DAC4BF31CF3E6E100304CD1 /* LuaTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BCB1CF3E6E000304CD1 /* LuaTimer.cpp */; };
+		0DAC4BF41CF3E6E100304CD1 /* LuaUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BCD1CF3E6E000304CD1 /* LuaUtil.cpp */; };
+		0DAC4BF51CF3E6E100304CD1 /* LuaUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BCD1CF3E6E000304CD1 /* LuaUtil.cpp */; };
+		0DAC4BF61CF3E6E100304CD1 /* ConfigMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD01CF3E6E000304CD1 /* ConfigMgr.cpp */; };
+		0DAC4BF71CF3E6E100304CD1 /* ConfigMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD01CF3E6E000304CD1 /* ConfigMgr.cpp */; };
+		0DAC4BF81CF3E6E100304CD1 /* ServiceGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD31CF3E6E000304CD1 /* ServiceGate.cpp */; };
+		0DAC4BF91CF3E6E100304CD1 /* ServiceGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD31CF3E6E000304CD1 /* ServiceGate.cpp */; };
+		0DAC4BFA1CF3E6E100304CD1 /* ServiceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD51CF3E6E000304CD1 /* ServiceMgr.cpp */; };
+		0DAC4BFB1CF3E6E100304CD1 /* ServiceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD51CF3E6E000304CD1 /* ServiceMgr.cpp */; };
+		0DAC4BFC1CF3E6E100304CD1 /* SocketEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD71CF3E6E000304CD1 /* SocketEvent.cpp */; };
+		0DAC4BFD1CF3E6E100304CD1 /* SocketEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD71CF3E6E000304CD1 /* SocketEvent.cpp */; };
+		0DAC4BFE1CF3E6E100304CD1 /* TDLuaMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD91CF3E6E000304CD1 /* TDLuaMgr.cpp */; };
+		0DAC4BFF1CF3E6E100304CD1 /* TDLuaMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BD91CF3E6E000304CD1 /* TDLuaMgr.cpp */; };
+		0DAC4C001CF3E6E100304CD1 /* MessageDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BDC1CF3E6E000304CD1 /* MessageDispatch.cpp */; };
+		0DAC4C011CF3E6E100304CD1 /* MessageDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BDC1CF3E6E000304CD1 /* MessageDispatch.cpp */; };
+		0DAC4C021CF3E6E100304CD1 /* NetConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BDE1CF3E6E000304CD1 /* NetConfig.cpp */; };
+		0DAC4C031CF3E6E100304CD1 /* NetConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BDE1CF3E6E000304CD1 /* NetConfig.cpp */; };
+		0DAC4C041CF3E6E100304CD1 /* ReadInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE11CF3E6E000304CD1 /* ReadInfo.cpp */; };
+		0DAC4C051CF3E6E100304CD1 /* ReadInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE11CF3E6E000304CD1 /* ReadInfo.cpp */; };
+		0DAC4C061CF3E6E100304CD1 /* TDSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE31CF3E6E000304CD1 /* TDSocket.cpp */; };
+		0DAC4C071CF3E6E100304CD1 /* TDSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE31CF3E6E000304CD1 /* TDSocket.cpp */; };
+		0DAC4C081CF3E6E100304CD1 /* TDThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE71CF3E6E000304CD1 /* TDThread.cpp */; };
+		0DAC4C091CF3E6E100304CD1 /* TDThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE71CF3E6E000304CD1 /* TDThread.cpp */; };
+		0DAC4C0A1CF3E6E100304CD1 /* TDThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE91CF3E6E100304CD1 /* TDThreadPool.cpp */; };
+		0DAC4C0B1CF3E6E100304CD1 /* TDThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BE91CF3E6E100304CD1 /* TDThreadPool.cpp */; };
+		0DAC4C0C1CF3E6E100304CD1 /* TDUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BEB1CF3E6E100304CD1 /* TDUtils.cpp */; };
+		0DAC4C0D1CF3E6E100304CD1 /* TDUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4BEB1CF3E6E100304CD1 /* TDUtils.cpp */; };
+		0DAC4C7F1CF3F0A000304CD1 /* libjsoncpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DAC4C681CF3EEEF00304CD1 /* libjsoncpp.a */; };
+		0DAC4C801CF3F0A000304CD1 /* liblualib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DAC4C2E1CF3EE8400304CD1 /* liblualib.a */; };
 		15427CD3198F221400DC375D /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A8A4251834BDA200142BE0 /* libcocos2d iOS.a */; };
 		15427CD5198F222200DC375D /* libluacocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15427CD2198F220600DC375D /* libluacocos2d iOS.a */; };
 		15427CEC198F24A600DC375D /* libluacocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15427CC2198F220600DC375D /* libluacocos2d Mac.a */; };
@@ -83,6 +117,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0DAC4C2D1CF3EE8400304CD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DAC4C291CF3EE8400304CD1 /* lualib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DAC4C171CF3EDE500304CD1;
+			remoteInfo = lualib;
+		};
+		0DAC4C671CF3EEEF00304CD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DAC4C631CF3EEEF00304CD1 /* jsoncpp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DAC4C571CF3EED000304CD1;
+			remoteInfo = jsoncpp;
+		};
 		152A349E199CE72E004B68DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */;
@@ -170,6 +218,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DAC4BC71CF3E6E000304CD1 /* LuaNetwork.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaNetwork.cpp; sourceTree = "<group>"; };
+		0DAC4BC81CF3E6E000304CD1 /* LuaNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaNetwork.h; sourceTree = "<group>"; };
+		0DAC4BC91CF3E6E000304CD1 /* LuaRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaRegister.cpp; sourceTree = "<group>"; };
+		0DAC4BCA1CF3E6E000304CD1 /* LuaRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaRegister.h; sourceTree = "<group>"; };
+		0DAC4BCB1CF3E6E000304CD1 /* LuaTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaTimer.cpp; sourceTree = "<group>"; };
+		0DAC4BCC1CF3E6E000304CD1 /* LuaTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaTimer.h; sourceTree = "<group>"; };
+		0DAC4BCD1CF3E6E000304CD1 /* LuaUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaUtil.cpp; sourceTree = "<group>"; };
+		0DAC4BCE1CF3E6E000304CD1 /* LuaUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaUtil.h; sourceTree = "<group>"; };
+		0DAC4BD01CF3E6E000304CD1 /* ConfigMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigMgr.cpp; sourceTree = "<group>"; };
+		0DAC4BD11CF3E6E000304CD1 /* ConfigMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigMgr.h; sourceTree = "<group>"; };
+		0DAC4BD31CF3E6E000304CD1 /* ServiceGate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServiceGate.cpp; sourceTree = "<group>"; };
+		0DAC4BD41CF3E6E000304CD1 /* ServiceGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceGate.h; sourceTree = "<group>"; };
+		0DAC4BD51CF3E6E000304CD1 /* ServiceMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServiceMgr.cpp; sourceTree = "<group>"; };
+		0DAC4BD61CF3E6E000304CD1 /* ServiceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceMgr.h; sourceTree = "<group>"; };
+		0DAC4BD71CF3E6E000304CD1 /* SocketEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SocketEvent.cpp; sourceTree = "<group>"; };
+		0DAC4BD81CF3E6E000304CD1 /* SocketEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketEvent.h; sourceTree = "<group>"; };
+		0DAC4BD91CF3E6E000304CD1 /* TDLuaMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDLuaMgr.cpp; sourceTree = "<group>"; };
+		0DAC4BDA1CF3E6E000304CD1 /* TDLuaMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLuaMgr.h; sourceTree = "<group>"; };
+		0DAC4BDC1CF3E6E000304CD1 /* MessageDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageDispatch.cpp; sourceTree = "<group>"; };
+		0DAC4BDD1CF3E6E000304CD1 /* MessageDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDispatch.h; sourceTree = "<group>"; };
+		0DAC4BDE1CF3E6E000304CD1 /* NetConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetConfig.cpp; sourceTree = "<group>"; };
+		0DAC4BDF1CF3E6E000304CD1 /* NetConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConfig.h; sourceTree = "<group>"; };
+		0DAC4BE01CF3E6E000304CD1 /* NetMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetMsg.h; sourceTree = "<group>"; };
+		0DAC4BE11CF3E6E000304CD1 /* ReadInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReadInfo.cpp; sourceTree = "<group>"; };
+		0DAC4BE21CF3E6E000304CD1 /* ReadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadInfo.h; sourceTree = "<group>"; };
+		0DAC4BE31CF3E6E000304CD1 /* TDSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDSocket.cpp; sourceTree = "<group>"; };
+		0DAC4BE41CF3E6E000304CD1 /* TDSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSocket.h; sourceTree = "<group>"; };
+		0DAC4BE61CF3E6E000304CD1 /* TDMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDMacro.h; sourceTree = "<group>"; };
+		0DAC4BE71CF3E6E000304CD1 /* TDThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDThread.cpp; sourceTree = "<group>"; };
+		0DAC4BE81CF3E6E100304CD1 /* TDThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDThread.h; sourceTree = "<group>"; };
+		0DAC4BE91CF3E6E100304CD1 /* TDThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDThreadPool.cpp; sourceTree = "<group>"; };
+		0DAC4BEA1CF3E6E100304CD1 /* TDThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDThreadPool.h; sourceTree = "<group>"; };
+		0DAC4BEB1CF3E6E100304CD1 /* TDUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TDUtils.cpp; sourceTree = "<group>"; };
+		0DAC4BEC1CF3E6E100304CD1 /* TDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUtils.h; sourceTree = "<group>"; };
+		0DAC4BED1CF3E6E100304CD1 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		0DAC4C291CF3EE8400304CD1 /* lualib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = lualib.xcodeproj; path = ../../../third_part/lualib/lualib.xcodeproj; sourceTree = "<group>"; };
+		0DAC4C631CF3EEEF00304CD1 /* jsoncpp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = jsoncpp.xcodeproj; path = ../../../third_part/jsoncpp/jsoncpp.xcodeproj; sourceTree = "<group>"; };
 		15427CE2198F237300DC375D /* lua_module_register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lua_module_register.h; path = ../Classes/lua_module_register.h; sourceTree = "<group>"; };
 		15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = "../../cocos2d-x/build/cocos2d_libs.xcodeproj"; sourceTree = "<group>"; };
 		15A8A4871834C90E00142BE0 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
@@ -277,6 +362,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DAC4C7F1CF3F0A000304CD1 /* libjsoncpp.a in Frameworks */,
+				0DAC4C801CF3F0A000304CD1 /* liblualib.a in Frameworks */,
 				9FA3AE4E1BE9BCC900FC9645 /* CFNetwork.framework in Frameworks */,
 				ED545A891B68A23E00C3958E /* libiconv.dylib in Frameworks */,
 				9FF504871A5E88CE00AFDA55 /* libsimulator iOS.a in Frameworks */,
@@ -300,6 +387,97 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DAC4BC61CF3E6E000304CD1 /* lua */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4BC71CF3E6E000304CD1 /* LuaNetwork.cpp */,
+				0DAC4BC81CF3E6E000304CD1 /* LuaNetwork.h */,
+				0DAC4BC91CF3E6E000304CD1 /* LuaRegister.cpp */,
+				0DAC4BCA1CF3E6E000304CD1 /* LuaRegister.h */,
+				0DAC4BCB1CF3E6E000304CD1 /* LuaTimer.cpp */,
+				0DAC4BCC1CF3E6E000304CD1 /* LuaTimer.h */,
+				0DAC4BCD1CF3E6E000304CD1 /* LuaUtil.cpp */,
+				0DAC4BCE1CF3E6E000304CD1 /* LuaUtil.h */,
+			);
+			name = lua;
+			path = ../lua;
+			sourceTree = "<group>";
+		};
+		0DAC4BCF1CF3E6E000304CD1 /* mgr */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4BD01CF3E6E000304CD1 /* ConfigMgr.cpp */,
+				0DAC4BD11CF3E6E000304CD1 /* ConfigMgr.h */,
+				0DAC4BD21CF3E6E000304CD1 /* netmgr */,
+				0DAC4BD91CF3E6E000304CD1 /* TDLuaMgr.cpp */,
+				0DAC4BDA1CF3E6E000304CD1 /* TDLuaMgr.h */,
+			);
+			name = mgr;
+			path = ../mgr;
+			sourceTree = "<group>";
+		};
+		0DAC4BD21CF3E6E000304CD1 /* netmgr */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4BD31CF3E6E000304CD1 /* ServiceGate.cpp */,
+				0DAC4BD41CF3E6E000304CD1 /* ServiceGate.h */,
+				0DAC4BD51CF3E6E000304CD1 /* ServiceMgr.cpp */,
+				0DAC4BD61CF3E6E000304CD1 /* ServiceMgr.h */,
+				0DAC4BD71CF3E6E000304CD1 /* SocketEvent.cpp */,
+				0DAC4BD81CF3E6E000304CD1 /* SocketEvent.h */,
+			);
+			path = netmgr;
+			sourceTree = "<group>";
+		};
+		0DAC4BDB1CF3E6E000304CD1 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4BDC1CF3E6E000304CD1 /* MessageDispatch.cpp */,
+				0DAC4BDD1CF3E6E000304CD1 /* MessageDispatch.h */,
+				0DAC4BDE1CF3E6E000304CD1 /* NetConfig.cpp */,
+				0DAC4BDF1CF3E6E000304CD1 /* NetConfig.h */,
+				0DAC4BE01CF3E6E000304CD1 /* NetMsg.h */,
+				0DAC4BE11CF3E6E000304CD1 /* ReadInfo.cpp */,
+				0DAC4BE21CF3E6E000304CD1 /* ReadInfo.h */,
+				0DAC4BE31CF3E6E000304CD1 /* TDSocket.cpp */,
+				0DAC4BE41CF3E6E000304CD1 /* TDSocket.h */,
+			);
+			name = net;
+			path = ../net;
+			sourceTree = "<group>";
+		};
+		0DAC4BE51CF3E6E000304CD1 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4BE61CF3E6E000304CD1 /* TDMacro.h */,
+				0DAC4BE71CF3E6E000304CD1 /* TDThread.cpp */,
+				0DAC4BE81CF3E6E100304CD1 /* TDThread.h */,
+				0DAC4BE91CF3E6E100304CD1 /* TDThreadPool.cpp */,
+				0DAC4BEA1CF3E6E100304CD1 /* TDThreadPool.h */,
+				0DAC4BEB1CF3E6E100304CD1 /* TDUtils.cpp */,
+				0DAC4BEC1CF3E6E100304CD1 /* TDUtils.h */,
+				0DAC4BED1CF3E6E100304CD1 /* TimeUtils.h */,
+			);
+			name = utils;
+			path = ../utils;
+			sourceTree = "<group>";
+		};
+		0DAC4C2A1CF3EE8400304CD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C2E1CF3EE8400304CD1 /* liblualib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DAC4C641CF3EEEF00304CD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C681CF3EEEF00304CD1 /* libjsoncpp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		15A8A4041834BDA200142BE0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +581,12 @@
 		F293B3BD15EB7BE500256477 = {
 			isa = PBXGroup;
 			children = (
+				0DAC4C631CF3EEEF00304CD1 /* jsoncpp.xcodeproj */,
+				0DAC4C291CF3EE8400304CD1 /* lualib.xcodeproj */,
+				0DAC4BC61CF3E6E000304CD1 /* lua */,
+				0DAC4BCF1CF3E6E000304CD1 /* mgr */,
+				0DAC4BDB1CF3E6E000304CD1 /* net */,
+				0DAC4BE51CF3E6E000304CD1 /* utils */,
 				9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */,
 				C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */,
 				15A8A4031834BDA200142BE0 /* cocos2d_libs.xcodeproj */,
@@ -551,8 +735,16 @@
 					ProjectRef = C03781AE18BF654500FE4F13 /* cocos2d_lua_bindings.xcodeproj */;
 				},
 				{
+					ProductGroup = 0DAC4C641CF3EEEF00304CD1 /* Products */;
+					ProjectRef = 0DAC4C631CF3EEEF00304CD1 /* jsoncpp.xcodeproj */;
+				},
+				{
 					ProductGroup = 9FF504791A5E86D600AFDA55 /* Products */;
 					ProjectRef = 9FF504781A5E86D600AFDA55 /* libsimulator.xcodeproj */;
+				},
+				{
+					ProductGroup = 0DAC4C2A1CF3EE8400304CD1 /* Products */;
+					ProjectRef = 0DAC4C291CF3EE8400304CD1 /* lualib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -564,6 +756,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0DAC4C2E1CF3EE8400304CD1 /* liblualib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblualib.a;
+			remoteRef = 0DAC4C2D1CF3EE8400304CD1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0DAC4C681CF3EEEF00304CD1 /* libjsoncpp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsoncpp.a;
+			remoteRef = 0DAC4C671CF3EEEF00304CD1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		15427CC2198F220600DC375D /* libluacocos2d Mac.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -674,12 +880,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DAC4BFB1CF3E6E100304CD1 /* ServiceMgr.cpp in Sources */,
+				0DAC4C0D1CF3E6E100304CD1 /* TDUtils.cpp in Sources */,
+				0DAC4C031CF3E6E100304CD1 /* NetConfig.cpp in Sources */,
 				C07828FA18B4D72E00BD2287 /* SimulatorApp.mm in Sources */,
 				9FFE00A01ACCF59E00D6E35A /* lua_debugger.c in Sources */,
+				0DAC4BF91CF3E6E100304CD1 /* ServiceGate.cpp in Sources */,
 				5023813317EBBCE400990C9B /* AppDelegate.cpp in Sources */,
+				0DAC4BFD1CF3E6E100304CD1 /* SocketEvent.cpp in Sources */,
+				0DAC4BEF1CF3E6E100304CD1 /* LuaNetwork.cpp in Sources */,
 				9FF504851A5E87B100AFDA55 /* ConsoleWindowController.m in Sources */,
+				0DAC4BF31CF3E6E100304CD1 /* LuaTimer.cpp in Sources */,
+				0DAC4C011CF3E6E100304CD1 /* MessageDispatch.cpp in Sources */,
+				0DAC4C0B1CF3E6E100304CD1 /* TDThreadPool.cpp in Sources */,
 				C07828F818B4D72E00BD2287 /* main.m in Sources */,
+				0DAC4BFF1CF3E6E100304CD1 /* TDLuaMgr.cpp in Sources */,
+				0DAC4C091CF3E6E100304CD1 /* TDThread.cpp in Sources */,
 				9FFE00A21ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
+				0DAC4BF71CF3E6E100304CD1 /* ConfigMgr.cpp in Sources */,
+				0DAC4C071CF3E6E100304CD1 /* TDSocket.cpp in Sources */,
+				0DAC4BF51CF3E6E100304CD1 /* LuaUtil.cpp in Sources */,
+				0DAC4BF11CF3E6E100304CD1 /* LuaRegister.cpp in Sources */,
+				0DAC4C051CF3E6E100304CD1 /* ReadInfo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,12 +910,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC760451A677A4A00D1E6E7 /* SimpleConfigParser.cpp in Sources */,
+				0DAC4BF01CF3E6E100304CD1 /* LuaRegister.cpp in Sources */,
+				0DAC4C081CF3E6E100304CD1 /* TDThread.cpp in Sources */,
+				0DAC4C0A1CF3E6E100304CD1 /* TDThreadPool.cpp in Sources */,
+				0DAC4BFC1CF3E6E100304CD1 /* SocketEvent.cpp in Sources */,
+				0DAC4C021CF3E6E100304CD1 /* NetConfig.cpp in Sources */,
+				0DAC4BF61CF3E6E100304CD1 /* ConfigMgr.cpp in Sources */,
+				0DAC4BF41CF3E6E100304CD1 /* LuaUtil.cpp in Sources */,
+				0DAC4BF81CF3E6E100304CD1 /* ServiceGate.cpp in Sources */,
 				5023812517EBBCAC00990C9B /* RootViewController.mm in Sources */,
 				F293BB9C15EB831F00256477 /* AppDelegate.cpp in Sources */,
+				0DAC4BEE1CF3E6E100304CD1 /* LuaNetwork.cpp in Sources */,
+				0DAC4C061CF3E6E100304CD1 /* TDSocket.cpp in Sources */,
+				0DAC4BFA1CF3E6E100304CD1 /* ServiceMgr.cpp in Sources */,
+				0DAC4C001CF3E6E100304CD1 /* MessageDispatch.cpp in Sources */,
 				9FFE009F1ACCF59E00D6E35A /* lua_debugger.c in Sources */,
 				5023812417EBBCAC00990C9B /* main.m in Sources */,
+				0DAC4C0C1CF3E6E100304CD1 /* TDUtils.cpp in Sources */,
 				9FFE00A11ACCF59E00D6E35A /* RuntimeLuaImpl.cpp in Sources */,
+				0DAC4BFE1CF3E6E100304CD1 /* TDLuaMgr.cpp in Sources */,
+				0DAC4BF21CF3E6E100304CD1 /* LuaTimer.cpp in Sources */,
 				5023811817EBBCAC00990C9B /* AppController.mm in Sources */,
+				0DAC4C041CF3E6E100304CD1 /* ReadInfo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -878,6 +1116,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -889,6 +1128,10 @@
 					"$(SRCROOT)/../Classes/protobuf-lite",
 					"$(SRCROOT)/../Classes",
 					"$(SRCROOT)/../../cocos2d-x/tools/simulator/libsimulator/lib",
+					"$(SRCROOT)/../",
+					"$(SRCROOT)/../../../third_part/jsoncpp/include",
+					"$(SRCROOT)/../../../external",
+					"$(SRCROOT)/../../../third_part/lualib",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -919,6 +1162,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -929,6 +1173,10 @@
 					"$(SRCROOT)/../Classes/protobuf-lite",
 					"$(SRCROOT)/../Classes",
 					"$(SRCROOT)/../../cocos2d-x/tools/simulator/libsimulator/lib",
+					"$(SRCROOT)/../",
+					"$(SRCROOT)/../../../third_part/jsoncpp/include",
+					"$(SRCROOT)/../../../external",
+					"$(SRCROOT)/../../../third_part/lualib",
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

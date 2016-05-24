@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DAC4C7C1CF3EF1900304CD1 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4C771CF3EF1900304CD1 /* json_reader.cpp */; };
+		0DAC4C7D1CF3EF1900304CD1 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4C781CF3EF1900304CD1 /* json_value.cpp */; };
+		0DAC4C7E1CF3EF1900304CD1 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DAC4C7A1CF3EF1900304CD1 /* json_writer.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0DAC4C551CF3EED000304CD1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0DAC4C571CF3EED000304CD1 /* libjsoncpp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libjsoncpp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DAC4C6B1CF3EF0C00304CD1 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		0DAC4C6C1CF3EF0C00304CD1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		0DAC4C6D1CF3EF0C00304CD1 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		0DAC4C6E1CF3EF0C00304CD1 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		0DAC4C6F1CF3EF0C00304CD1 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		0DAC4C701CF3EF0C00304CD1 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		0DAC4C711CF3EF0C00304CD1 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		0DAC4C721CF3EF0C00304CD1 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		0DAC4C741CF3EF1900304CD1 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		0DAC4C751CF3EF1900304CD1 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		0DAC4C761CF3EF1900304CD1 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		0DAC4C771CF3EF1900304CD1 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		0DAC4C781CF3EF1900304CD1 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		0DAC4C791CF3EF1900304CD1 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		0DAC4C7A1CF3EF1900304CD1 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		0DAC4C7B1CF3EF1900304CD1 /* sconscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sconscript; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DAC4C541CF3EED000304CD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DAC4C4E1CF3EED000304CD1 = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C731CF3EF1900304CD1 /* lib_json */,
+				0DAC4C691CF3EF0C00304CD1 /* include */,
+				0DAC4C581CF3EED000304CD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0DAC4C581CF3EED000304CD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C571CF3EED000304CD1 /* libjsoncpp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DAC4C691CF3EF0C00304CD1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C6A1CF3EF0C00304CD1 /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		0DAC4C6A1CF3EF0C00304CD1 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C6B1CF3EF0C00304CD1 /* autolink.h */,
+				0DAC4C6C1CF3EF0C00304CD1 /* config.h */,
+				0DAC4C6D1CF3EF0C00304CD1 /* features.h */,
+				0DAC4C6E1CF3EF0C00304CD1 /* forwards.h */,
+				0DAC4C6F1CF3EF0C00304CD1 /* json.h */,
+				0DAC4C701CF3EF0C00304CD1 /* reader.h */,
+				0DAC4C711CF3EF0C00304CD1 /* value.h */,
+				0DAC4C721CF3EF0C00304CD1 /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		0DAC4C731CF3EF1900304CD1 /* lib_json */ = {
+			isa = PBXGroup;
+			children = (
+				0DAC4C741CF3EF1900304CD1 /* json_batchallocator.h */,
+				0DAC4C751CF3EF1900304CD1 /* json_internalarray.inl */,
+				0DAC4C761CF3EF1900304CD1 /* json_internalmap.inl */,
+				0DAC4C771CF3EF1900304CD1 /* json_reader.cpp */,
+				0DAC4C781CF3EF1900304CD1 /* json_value.cpp */,
+				0DAC4C791CF3EF1900304CD1 /* json_valueiterator.inl */,
+				0DAC4C7A1CF3EF1900304CD1 /* json_writer.cpp */,
+				0DAC4C7B1CF3EF1900304CD1 /* sconscript */,
+			);
+			name = lib_json;
+			path = src/lib_json;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0DAC4C561CF3EED000304CD1 /* jsoncpp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DAC4C601CF3EED000304CD1 /* Build configuration list for PBXNativeTarget "jsoncpp" */;
+			buildPhases = (
+				0DAC4C531CF3EED000304CD1 /* Sources */,
+				0DAC4C541CF3EED000304CD1 /* Frameworks */,
+				0DAC4C551CF3EED000304CD1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jsoncpp;
+			productName = jsoncpp;
+			productReference = 0DAC4C571CF3EED000304CD1 /* libjsoncpp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DAC4C4F1CF3EED000304CD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = wugd;
+				TargetAttributes = {
+					0DAC4C561CF3EED000304CD1 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 0DAC4C521CF3EED000304CD1 /* Build configuration list for PBXProject "jsoncpp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0DAC4C4E1CF3EED000304CD1;
+			productRefGroup = 0DAC4C581CF3EED000304CD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DAC4C561CF3EED000304CD1 /* jsoncpp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DAC4C531CF3EED000304CD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DAC4C7C1CF3EF1900304CD1 /* json_reader.cpp in Sources */,
+				0DAC4C7E1CF3EF1900304CD1 /* json_writer.cpp in Sources */,
+				0DAC4C7D1CF3EF1900304CD1 /* json_value.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0DAC4C5E1CF3EED000304CD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0DAC4C5F1CF3EED000304CD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0DAC4C611CF3EED000304CD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		0DAC4C621CF3EED000304CD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DAC4C521CF3EED000304CD1 /* Build configuration list for PBXProject "jsoncpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DAC4C5E1CF3EED000304CD1 /* Debug */,
+				0DAC4C5F1CF3EED000304CD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DAC4C601CF3EED000304CD1 /* Build configuration list for PBXNativeTarget "jsoncpp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DAC4C611CF3EED000304CD1 /* Debug */,
+				0DAC4C621CF3EED000304CD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DAC4C4F1CF3EED000304CD1 /* Project object */;
+}
